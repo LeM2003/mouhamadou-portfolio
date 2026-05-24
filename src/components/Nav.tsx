@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TimeAwareStatus } from "./TimeAwareStatus";
+import { CommandPaletteTrigger } from "./CommandPaletteTrigger";
 
 export function Nav() {
   return (
@@ -17,24 +18,8 @@ export function Nav() {
       </div>
 
       <div className="flex items-center gap-6 lg:gap-8 text-xs uppercase tracking-[0.15em]">
-        {/* Indice Command Palette — découvrabilité */}
-        <button
-          type="button"
-          aria-label="Ouvrir la command palette"
-          onClick={() => {
-            // Déclenche Cmd+K synthétiquement
-            const event = new KeyboardEvent("keydown", {
-              key: "k",
-              metaKey: true,
-              bubbles: true,
-            });
-            window.dispatchEvent(event);
-          }}
-          className="hidden md:flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--accent)] px-2 py-1 border border-[var(--hairline)] hover:border-[var(--accent)] transition-colors"
-        >
-          <span>Intent</span>
-          <kbd className="text-[9px] opacity-70">⌘K</kbd>
-        </button>
+        {/* Indice Command Palette — découvrabilité (Client Component dédié) */}
+        <CommandPaletteTrigger />
         <Link
           href="/#projects"
           className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
