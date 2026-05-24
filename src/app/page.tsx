@@ -54,14 +54,23 @@ export default function Home() {
     <main className="flex-1 flex flex-col">
       <Nav />
 
-      <section className="flex-1 px-6 md:px-12 lg:px-20 pt-16 md:pt-32 pb-24 max-w-6xl mx-auto w-full">
-        <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-10 flex items-center gap-3">
+      <section className="flex-1 relative px-6 md:px-12 lg:px-20 pt-16 md:pt-32 pb-24 max-w-6xl mx-auto w-full overflow-hidden">
+        {/* "01" monumental en arrière-plan — signature brutaliste premium.
+            Tension visuelle entre la typo géante muette et la métadonnée mono. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-8 right-0 md:right-8 lg:right-16 font-[family-name:var(--font-display)] text-[16rem] md:text-[22rem] lg:text-[28rem] italic leading-[0.78] tracking-tighter text-[var(--accent)] opacity-[0.07] select-none"
+        >
+          01
+        </div>
+
+        <div className="relative font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-10 flex items-center gap-3">
           <span>01</span>
           <span className="w-8 h-px bg-[var(--hairline)]" />
           <span>Manifeste</span>
         </div>
 
-        <h1 className="font-[family-name:var(--font-display)] text-5xl md:text-7xl lg:text-8xl font-normal leading-[0.95] tracking-tight max-w-5xl">
+        <h1 className="relative font-[family-name:var(--font-display)] text-5xl md:text-7xl lg:text-8xl font-normal leading-[0.95] tracking-tight max-w-5xl">
           Je conçois des produits où l&apos;IA est une
           <span className="text-[var(--accent)] italic"> décision d&apos;architecture</span>,
           pas un add-on marketing.
@@ -119,14 +128,22 @@ export default function Home() {
         </ScrollReveal>
 
         <div className="flex flex-col">
-          {projects.map((p, i) => (
+          {projects.map((p, i) => {
+            // Asymétrie brutaliste mesurée : décalage alterné des projets
+            // Pair (02, 04) → léger retrait à droite + offset top
+            const isEven = i % 2 === 1;
+            return (
             <ScrollReveal key={p.num} delay={i * 0.1} y={32}>
               <a
                 href={p.href}
                 target="_blank"
                 rel="noreferrer"
                 data-cursor-text={p.cursorText}
-                className="group relative grid grid-cols-12 gap-6 py-10 border-b border-[var(--hairline)] hover:border-[var(--accent)] transition-colors"
+                className={`group relative grid grid-cols-12 gap-6 py-10 border-b border-[var(--hairline)] hover:border-[var(--accent)] transition-colors ${
+                  isEven
+                    ? "md:ml-16 lg:ml-32 md:-mt-4 md:mb-4"
+                    : ""
+                }`}
               >
               <div className="col-span-2 md:col-span-2 font-[family-name:var(--font-display)] text-6xl md:text-8xl text-[var(--muted)] group-hover:text-[var(--accent)] leading-none transition-colors -mt-2">
                 {p.num}
@@ -157,13 +174,48 @@ export default function Home() {
               </div>
               </a>
             </ScrollReveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ── 03 — Chiffres bruts : tension brutaliste typo monumentale × mono ──
+          Pattern Top 1 mondial : chiffre géant Fraunces italique juxtaposé
+          avec label mono ultra-petit. Signature "rendre visible le quantifié". */}
+      <section className="px-6 md:px-12 lg:px-20 py-32 max-w-6xl mx-auto w-full">
+        <ScrollReveal>
+          <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-16 flex items-center gap-3">
+            <span>03</span>
+            <span className="w-8 h-px bg-[var(--hairline)]" />
+            <span>Chiffres réels</span>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-16">
+          {[
+            { value: "02", label: "Produits en production (Olèle · Personal OS)", delay: 0 },
+            { value: "04", label: "Projets open source publiés", delay: 0.1 },
+            { value: "1y+", label: "Master Data Science · IA UMEF Dakar", delay: 0.2 },
+            { value: "GMT+0", label: "Fuseau Dakar · EU-friendly", delay: 0.3 },
+          ].map((m) => (
+            <ScrollReveal key={m.label} delay={m.delay} y={40}>
+              <div className="flex flex-col">
+                <div className="font-[family-name:var(--font-display)] text-[5rem] md:text-[9rem] lg:text-[13rem] italic leading-[0.85] tracking-tighter text-[var(--foreground)]">
+                  {m.value}
+                </div>
+                <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.18em] text-[var(--muted)] mt-3 max-w-[14ch] leading-tight">
+                  {m.label}
+                </div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
+      {/* ── 04 — Démo ── */}
       <section className="px-6 md:px-12 lg:px-20 py-24 max-w-6xl mx-auto w-full">
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-6">
-          03 — Démo
+          04 — Démo
         </div>
         <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl mb-8 max-w-3xl">
           L&apos;IA bien intégrée n&apos;est pas un{" "}
