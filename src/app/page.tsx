@@ -191,19 +191,21 @@ export default function Home() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-16">
+        {/* Grille 2 colonnes (mobile 1) : chiffres respirent, brutalisme propre.
+            Tailles raisonnables : 5rem mobile → 8rem desktop, pas de débordement. */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
           {[
-            { value: "02", label: "Produits en production (Olèle · Personal OS)", delay: 0 },
-            { value: "04", label: "Projets open source publiés", delay: 0.1 },
-            { value: "1y+", label: "Master Data Science · IA UMEF Dakar", delay: 0.2 },
-            { value: "GMT+0", label: "Fuseau Dakar · EU-friendly", delay: 0.3 },
+            { value: "02", label: "Produits en production · Olèle · Personal OS", delay: 0 },
+            { value: "04", label: "Projets open source publiés sur GitHub", delay: 0.1 },
+            { value: "1+", label: "Année Master Data Science / IA · UMEF Dakar", delay: 0.2 },
+            { value: "GMT+0", label: "Fuseau Dakar · EU-friendly · 7h–23h disponible", delay: 0.3 },
           ].map((m) => (
             <ScrollReveal key={m.label} delay={m.delay} y={40}>
               <div className="flex flex-col">
-                <div className="font-[family-name:var(--font-display)] text-[5rem] md:text-[9rem] lg:text-[13rem] italic leading-[0.85] tracking-tighter text-[var(--foreground)]">
+                <div className="font-[family-name:var(--font-display)] text-[5rem] md:text-[7rem] lg:text-[9rem] italic leading-[0.85] tracking-tighter text-[var(--foreground)]">
                   {m.value}
                 </div>
-                <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.18em] text-[var(--muted)] mt-3 max-w-[14ch] leading-tight">
+                <div className="font-mono text-[10px] md:text-xs uppercase tracking-[0.18em] text-[var(--muted)] mt-4 max-w-[28ch] leading-relaxed">
                   {m.label}
                 </div>
               </div>
