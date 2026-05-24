@@ -66,11 +66,22 @@ export const intents: Intent[] = [
     keywords: ["ai", "ia", "llm", "groq", "openai", "anthropic", "claude", "rag", "embedding", "ml", "machine learning"],
     category: "tech",
     actions: [
+      { kind: "route", path: "/lab/rag", label: "RAG Playground · démo visuelle interactive" },
       { kind: "project", slug: "personal-os-v2" },
       { kind: "external", url: "https://github.com/LeM2003", label: "Voir tous les projets IA sur GitHub" },
     ],
     response: () =>
       "Personal OS V2 intègre Groq (Llama 3.3 70B) pour un assistant local-first <500ms. Master Data Science / IA en cours à Dakar. Je pense les LLMs comme un matériau de design produit, pas un add-on marketing.",
+  },
+  {
+    id: "rag-explained",
+    keywords: ["rag", "retrieval", "augmented", "playground", "lab", "demo", "interactive"],
+    category: "tech",
+    actions: [
+      { kind: "route", path: "/lab/rag", label: "RAG Playground · visualise chunking + embeddings + retrieval" },
+    ],
+    response: () =>
+      "Le RAG n'est pas magique. Va voir le playground visuel : tape une phrase, observe le chunking, la projection 2D des embeddings, et le retrieval des k voisins les plus proches.",
   },
   {
     id: "freelance-hire",
