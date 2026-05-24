@@ -48,3 +48,36 @@ body {
   background: var(--accent);
   color: var(--background);
 }
+
+/* ─────────────────────────────────────────────────────────────
+   Custom cursor — cache le curseur natif sur desktop quand actif
+   Fallback gracieux : si le composant CustomCursor n'est pas monté
+   (touch device, reduced-motion, JS off), le curseur natif reste.
+   ───────────────────────────────────────────────────────────── */
+body.custom-cursor-on,
+body.custom-cursor-on a,
+body.custom-cursor-on button,
+body.custom-cursor-on [role="button"],
+body.custom-cursor-on input,
+body.custom-cursor-on textarea,
+body.custom-cursor-on select,
+body.custom-cursor-on label {
+  cursor: none;
+}
+
+/* Re-active le curseur dans les iframes éventuelles (YouTube, etc.) */
+body.custom-cursor-on iframe {
+  cursor: auto;
+}
+
+/* Respecte prefers-reduced-motion : pas d'animations qui bougent */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

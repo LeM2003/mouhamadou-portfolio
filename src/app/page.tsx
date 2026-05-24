@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Nav } from "@/components/Nav";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 const projects = [
   {
@@ -10,6 +12,7 @@ const projects = [
     stack: ["Next.js 16", "Supabase", "Vercel"],
     year: "2025 – 2026",
     href: "https://github.com/LeM2003/olele-systems",
+    cursorText: "Supabase RLS · JWT",
   },
   {
     num: "02",
@@ -20,6 +23,7 @@ const projects = [
     stack: ["Next.js 16", "Groq", "Framer Motion"],
     year: "2026 — en cours",
     href: "https://github.com/LeM2003/personal-os-v2",
+    cursorText: "Local-first · Groq",
   },
   {
     num: "03",
@@ -30,6 +34,7 @@ const projects = [
     stack: ["PWA", "Open source"],
     year: "2026",
     href: "https://github.com/LeM2003/MuslimApp",
+    cursorText: "PWA · offline-first",
   },
   {
     num: "04",
@@ -40,51 +45,14 @@ const projects = [
     stack: ["Node.js", "Web app"],
     year: "2025 – 2026",
     href: "https://github.com/LeM2003/importmanager-sn",
+    cursorText: "Multi-currency · JS",
   },
 ];
 
 export default function Home() {
   return (
     <main className="flex-1 flex flex-col">
-      <nav className="px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between">
-        <Link
-          href="/"
-          className="font-[family-name:var(--font-display)] text-xl tracking-tight"
-        >
-          MD
-        </Link>
-        <div className="flex items-center gap-8 text-xs uppercase tracking-[0.15em]">
-          <Link
-            href="#projects"
-            className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >
-            Projets
-          </Link>
-          <Link
-            href="/now"
-            className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-          >
-            Maintenant
-          </Link>
-          <a
-            href="https://github.com/LeM2003"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors font-mono"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mouhamadou-diouf"
-            target="_blank"
-            rel="noreferrer"
-            className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors font-mono"
-          >
-            LinkedIn
-          </a>
-          <span className="font-mono text-[var(--muted)]">FR / <span className="opacity-40">EN</span></span>
-        </div>
-      </nav>
+      <Nav />
 
       <section className="flex-1 px-6 md:px-12 lg:px-20 pt-16 md:pt-32 pb-24 max-w-6xl mx-auto w-full">
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-10 flex items-center gap-3">
@@ -134,29 +102,32 @@ export default function Home() {
         id="projects"
         className="px-6 md:px-12 lg:px-20 py-24 max-w-6xl mx-auto w-full"
       >
-        <div className="flex items-end justify-between mb-16 pb-4 border-b border-[var(--hairline)]">
-          <div>
-            <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-2">
-              02 — En production
+        <ScrollReveal>
+          <div className="flex items-end justify-between mb-16 pb-4 border-b border-[var(--hairline)]">
+            <div>
+              <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-2">
+                02 — En production
+              </div>
+              <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl">
+                Produits qui tournent.
+              </h2>
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl">
-              Produits qui tournent.
-            </h2>
+            <div className="font-mono text-xs text-[var(--muted)]">
+              {projects.length.toString().padStart(2, "0")} projets
+            </div>
           </div>
-          <div className="font-mono text-xs text-[var(--muted)]">
-            {projects.length.toString().padStart(2, "0")} projets
-          </div>
-        </div>
+        </ScrollReveal>
 
         <div className="flex flex-col">
-          {projects.map((p) => (
-            <a
-              key={p.num}
-              href={p.href}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative grid grid-cols-12 gap-6 py-10 border-b border-[var(--hairline)] hover:border-[var(--accent)] transition-colors"
-            >
+          {projects.map((p, i) => (
+            <ScrollReveal key={p.num} delay={i * 0.1} y={32}>
+              <a
+                href={p.href}
+                target="_blank"
+                rel="noreferrer"
+                data-cursor-text={p.cursorText}
+                className="group relative grid grid-cols-12 gap-6 py-10 border-b border-[var(--hairline)] hover:border-[var(--accent)] transition-colors"
+              >
               <div className="col-span-2 md:col-span-2 font-[family-name:var(--font-display)] text-6xl md:text-8xl text-[var(--muted)] group-hover:text-[var(--accent)] leading-none transition-colors -mt-2">
                 {p.num}
               </div>
@@ -184,7 +155,8 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-            </a>
+              </a>
+            </ScrollReveal>
           ))}
         </div>
       </section>
