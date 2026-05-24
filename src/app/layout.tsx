@@ -5,6 +5,7 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { CustomCursor } from "@/components/CustomCursor";
 import { PageTransition } from "@/components/PageTransition";
 import { Loader } from "@/components/Loader";
+import { CommandPalette } from "@/components/CommandPalette";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +43,7 @@ export default function RootLayout({
         <Loader />
         <SmoothScroll />
         <CustomCursor />
+        <CommandPalette />
         <PageTransition>{children}</PageTransition>
       </body>
     </html>
