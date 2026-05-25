@@ -1,53 +1,7 @@
 import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { ScrollReveal } from "@/components/ScrollReveal";
-
-const projects = [
-  {
-    num: "01",
-    name: "Olèle Systems",
-    tag: "Plateforme LMS",
-    context: "Formations vidéo + quiz certifiants pour la diaspora",
-    decision: "Next.js 16 RSC + Supabase RLS pour scaler à coût quasi-nul",
-    stack: ["Next.js 16", "Supabase", "Vercel"],
-    year: "2025 – 2026",
-    href: "https://github.com/LeM2003/olele-systems",
-    cursorText: "Supabase RLS · JWT",
-  },
-  {
-    num: "02",
-    name: "Personal OS V2",
-    tag: "Dashboard de vie",
-    context: "Outil personnel — école, finances, tâches, assistant IA",
-    decision: "Local-first avec Groq pour latence assistant <500ms",
-    stack: ["Next.js 16", "Groq", "Framer Motion"],
-    year: "2026 — en cours",
-    href: "https://github.com/LeM2003/personal-os-v2",
-    cursorText: "Local-first · Groq",
-  },
-  {
-    num: "03",
-    name: "MuslimApp",
-    tag: "Application communautaire",
-    context: "PWA Coran + dhikr, gratuite, offline-first",
-    decision: "PWA pure pour usage hors-ligne en zone faible réseau",
-    stack: ["PWA", "Open source"],
-    year: "2026",
-    href: "https://github.com/LeM2003/MuslimApp",
-    cursorText: "PWA · offline-first",
-  },
-  {
-    num: "04",
-    name: "ImportManager SN",
-    tag: "Gestion d'import",
-    context: "Outil métier pour entreprises sénégalaises d'import",
-    decision: "Stack legacy JS/Node maintenable par équipe locale",
-    stack: ["Node.js", "Web app"],
-    year: "2025 – 2026",
-    href: "https://github.com/LeM2003/importmanager-sn",
-    cursorText: "Multi-currency · JS",
-  },
-];
+import { projects } from "@/data/projects";
 
 export default function Home() {
   return (
@@ -134,10 +88,8 @@ export default function Home() {
             const isEven = i % 2 === 1;
             return (
             <ScrollReveal key={p.num} delay={i * 0.1} y={32}>
-              <a
-                href={p.href}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                href={`/projects/${p.slug}`}
                 data-cursor-text={p.cursorText}
                 className={`group relative grid grid-cols-12 gap-6 py-10 border-b border-[var(--hairline)] hover:border-[var(--accent)] transition-colors ${
                   isEven
@@ -172,7 +124,7 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              </a>
+              </Link>
             </ScrollReveal>
             );
           })}
