@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { SaveContactButton } from "@/components/SaveContactButton";
 import { QRCodeBlock } from "@/components/QRCodeBlock";
+import { CardStatusBanner } from "@/components/CardStatusBanner";
+import { MdMonogram } from "@/components/MdMonogram";
+import { projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Carte — Mouhamadou Diouf",
@@ -100,6 +104,9 @@ export default function CardPage() {
 
       {/* ── 01 — Carte de visite ───────────────────────────────── */}
       <section className="px-6 md:px-12 lg:px-20 pt-16 md:pt-24 pb-20 max-w-6xl mx-auto w-full">
+        {/* Status banner vivant — signature Top 1 mondial */}
+        <CardStatusBanner />
+
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-10 flex items-center gap-3">
           <span>01</span>
           <span className="w-8 h-px bg-[var(--hairline)]" />
@@ -109,8 +116,8 @@ export default function CardPage() {
         <div className="grid grid-cols-12 gap-8 md:gap-12 items-end">
           {/* Identité — colonne gauche */}
           <div className="col-span-12 md:col-span-8">
-            <div className="font-[family-name:var(--font-display)] text-[10rem] md:text-[14rem] lg:text-[18rem] leading-[0.85] tracking-tighter text-[var(--accent)] italic mb-6">
-              MD
+            <div className="mb-6">
+              <MdMonogram />
             </div>
             <h1 className="font-[family-name:var(--font-display)] text-4xl md:text-5xl lg:text-6xl font-normal leading-tight tracking-tight">
               {CONTACT.fullName}
@@ -186,10 +193,67 @@ export default function CardPage() {
         </div>
       </section>
 
-      {/* ── 03 — Disponible pour ──────────────────────────────── */}
-      <section className="px-6 md:px-12 lg:px-20 py-24 max-w-6xl mx-auto w-full">
+      {/* ── 03 — Currently building ────────────────────────────
+          Mini-grid des projets actifs avec lien vers les case studies.
+          Connecte /card au reste du portfolio. */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 max-w-6xl mx-auto w-full border-t border-[var(--hairline)]">
+        <div className="flex items-end justify-between mb-12">
+          <div>
+            <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-2">
+              03 — Currently building
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-4xl">
+              Ce sur quoi je travaille.
+            </h2>
+          </div>
+          <Link
+            href="/#projects"
+            data-cursor-text="Voir tous les projets"
+            className="hidden md:inline-block font-mono text-xs uppercase tracking-[0.15em] text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+          >
+            Tous →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {projects
+            .filter((p) => p.status === "production" || p.status === "active")
+            .slice(0, 3)
+            .map((p) => (
+              <Link
+                key={p.slug}
+                href={`/projects/${p.slug}`}
+                data-cursor-text={p.cursorText}
+                className="group flex flex-col gap-3 p-6 border border-[var(--hairline)] hover:border-[var(--accent)] transition-colors"
+              >
+                <div className="flex items-baseline justify-between">
+                  <span className="font-[family-name:var(--font-display)] text-3xl md:text-4xl italic text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors leading-none">
+                    {p.num}
+                  </span>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--muted)]">
+                    {p.status === "production" ? "● en prod" : "○ actif"}
+                  </span>
+                </div>
+                <div>
+                  <h3 className="font-[family-name:var(--font-display)] text-xl md:text-2xl mb-1 group-hover:text-[var(--accent)] transition-colors leading-tight">
+                    {p.name}
+                  </h3>
+                  <p className="font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                    {p.tag} · {p.year}
+                  </p>
+                </div>
+                <p className="text-sm text-[var(--muted)] leading-relaxed line-clamp-3">
+                  {p.context}
+                </p>
+              </Link>
+            ))}
+        </div>
+      </section>
+
+      {/* ── 04 — Disponible pour ──────────────────────────────── */}
+      <section className="px-6 md:px-12 lg:px-20 py-24 max-w-6xl mx-auto w-full border-t border-[var(--hairline)]">
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-6">
-          03 — Disponible pour
+          04 — Disponible pour
         </div>
         <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl mb-12 max-w-3xl">
           Ce sur quoi on peut{" "}
