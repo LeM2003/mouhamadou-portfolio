@@ -18,8 +18,8 @@ const CONTACT = {
   fullName: "Mouhamadou Diouf",
   firstName: "Mouhamadou",
   lastName: "Diouf",
-  title: "AI Product Builder",
-  org: "Indépendant",
+  title: "AI Product Builder & Product Owner",
+  org: "Auryntix",
   location: "Dakar, Sénégal",
   email: "Mouhamadoud_Diouf@proton.me",
   linkedin: "https://www.linkedin.com/in/mouhamadoudiouf",
@@ -27,8 +27,8 @@ const CONTACT = {
   phoneInternational: "+221783019983",
   phoneDisplay: "+221 78 301 99 83",
   whatsappUrl: "https://wa.me/221783019983",
-  website: "https://mouhamadou-diouf.com",
-  note: "Master Data Science & IA · UMEF Dakar · Open to freelance & collaborations",
+  website: "https://mouhamadou-portfolio.vercel.app",
+  note: "AI Product Builder & PO @Auryntix · Master DS/IA · Dakar · Open to freelance & collaborations",
 };
 
 // Génération vCard 3.0 — format standard reconnu par iOS / Android / Outlook

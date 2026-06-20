@@ -27,6 +27,12 @@ export function Nav() {
           Projets
         </Link>
         <Link
+          href="/services"
+          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+        >
+          Services
+        </Link>
+        <Link
           href="/lab/rag"
           className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors hidden lg:inline"
         >

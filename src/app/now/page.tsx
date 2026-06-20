@@ -10,24 +10,24 @@ export const metadata: Metadata = {
 const focuses = [
   {
     num: "01",
-    category: "Études & Recherche",
-    title: "Master Data Science & IA · UMEF Dakar",
+    category: "Product & Leadership",
+    title: "Product Owner @Auryntix",
     description:
-      "Approfondissement des réseaux neuronaux profonds, des architectures de transformeurs et de l'optimisation des requêtes vectorielles (RAG). Application pratique sur des cas d'usage locaux en Afrique de l'Ouest.",
+      "Transformation d'une vision en roadmap produit, priorisation des besoins, coordination de l'équipe technique et pilotage de la delivery. Partenariat stratégique signé avec Zeksta Technology (Inde) pour accélérer la transformation digitale en Afrique.",
   },
   {
     num: "02",
-    category: "Projets Actuels",
-    title: "Olèle Systems & Personal OS V2",
+    category: "Projets en Production",
+    title: "Personal OS V2 · Olèle Systems",
     description:
-      "Mise à l'échelle d'Olèle Systems (LMS certifiant) et raffinement de Personal OS V2 avec intégration d'un assistant IA local-first sous les 500ms de temps de réponse. Passage du concept de simple chatbot à un agent contextuel autonome.",
+      "Personal OS V2 : dashboard IA local-first pour étudiants et entrepreneurs africains (personal-os.click). Olèle Systems : LMS certifiant en production avec clients réels. Les deux sur Next.js 16 + Supabase + Vercel.",
   },
   {
     num: "03",
-    category: "Apprentissages",
-    title: "Orchestration d'Agents & WebGL",
+    category: "Études & Stack",
+    title: "Master Data Science & IA · UMEF Dakar",
     description:
-      "Expérimentations sur l'orchestration multi-agents (LangGraph, CrewAI) et modélisation de visualisations de données interactives légères pour expliquer l'IA de manière intuitive sur le web.",
+      "Combinaison de la rigueur data, du sens produit et de l'automatisation intelligente. Stack active : Next.js · TypeScript · React · Supabase · Tailwind · Python · LLMs · Vercel.",
   },
 ];
 
@@ -77,7 +77,7 @@ export default function NowPage() {
             <div>
               <span className="text-[var(--foreground)] font-medium">Dernière mise à jour</span>
               <br />
-              Mai 2026 · Depuis Dakar 🇸🇳
+              Juin 2026 · Depuis Dakar 🇸🇳
             </div>
           </div>
         </div>

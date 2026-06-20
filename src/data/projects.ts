@@ -13,7 +13,8 @@ export type ProjectSlug =
   | "olele-systems"
   | "personal-os-v2"
   | "muslim-app"
-  | "import-manager-sn";
+  | "import-manager-sn"
+  | "auryntix";
 
 export type Project = {
   slug: ProjectSlug;
@@ -123,7 +124,7 @@ export const projects: Project[] = [
     cursorText: "Local-first · Groq",
     stack: ["Next.js 16", "Groq", "Framer Motion"],
     repoUrl: "https://github.com/LeM2003/personal-os-v2",
-    liveUrl: "https://personal-os-v2-wheat.vercel.app",
+    liveUrl: "https://personal-os.click",
     caseStudy: {
       problem:
         "J'avais besoin d'un dashboard personnel unique pour gérer école (Master Data Science / IA), finances, tâches, journal et assistant IA. Notion est trop lourd, Apple Notes trop limité, les outils SaaS facturent et stockent mes données. Je voulais local-first + assistant IA sous 500ms.",
@@ -269,6 +270,63 @@ export const projects: Project[] = [
       learnings: [
         "La meilleure stack = celle que ton client peut maintenir, pas celle qui est à la mode.",
         "L'Afrique francophone a besoin d'outils métiers en français, conçus pour ses réalités (connexion, devices, formation).",
+      ],
+    },
+  },
+  {
+    slug: "auryntix",
+    num: "05",
+    name: "Auryntix",
+    tag: "Agence IA & Web",
+    year: "2026 — en cours",
+    status: "production",
+    context: "Site vitrine d'une agence IA fondée à Dakar",
+    decision: "GSAP + ScrollTrigger remplace Framer Motion pour des animations scroll 60fps sans layout shift",
+    cursorText: "GSAP · Next.js 16",
+    stack: ["Next.js 16", "GSAP", "Tailwind v4"],
+    repoUrl: null,
+    liveUrl: "https://auryntix.com",
+    caseStudy: {
+      problem:
+        "Auryntix est une agence IA & Web basée à Dakar. Le site devait incarner le positionnement premium de l'agence — animations fluides, identité forte — sans les compromis habituels des templates SaaS génériques. Framer Motion introduisait des layout shifts et des re-renders inutiles sur les sections hero et expertise.",
+      solution:
+        "Migration complète vers GSAP 3 + ScrollTrigger. Architecture d'animations en couches : hero stagger (entrée des éléments H1 + sous-titres), ScrollReveal générique pour les sections, ScrollTrigger.batch pour l'expertise (stagger scroll-aware), AIVisual rebuildé avec timeline GSAP (draw-in + pulse organique), ApproachTimeline avec connector line progressive. next-intl pour l'i18n FR/EN. Déploiement Vercel direct.",
+      fullStack: [
+        "Next.js 16 (App Router)",
+        "React 19 · TypeScript",
+        "Tailwind v4",
+        "GSAP 3 + ScrollTrigger",
+        "@gsap/react (useGSAP hook)",
+        "next-intl (FR/EN)",
+        "Vercel",
+      ],
+      keyDecisions: [
+        {
+          title: "GSAP plutôt que Framer Motion",
+          rationale:
+            "ScrollTrigger.batch permet un stagger scroll-aware natif. GSAP `useGSAP` + `gsap.context().revert()` = cleanup automatique sans memory leaks. Framer Motion manque de contrôle fin sur les timelines complexes.",
+        },
+        {
+          title: "ScrollReveal générique partagé",
+          rationale:
+            "Un composant `<ScrollReveal>` réutilisable sur toutes les sections évite de dupliquer la logique GSAP. Chaque section déclare juste ses enfants — le composant gère l'animation.",
+        },
+        {
+          title: "prefersReducedMotion() vérifié partout",
+          rationale:
+            "Accessibilité non-négociable. Si l'utilisateur a activé 'réduire les animations' dans son OS, toutes les animations GSAP sont court-circuitées.",
+        },
+      ],
+      metrics: [
+        { label: "Animations", value: "60fps stables" },
+        { label: "Langues", value: "FR / EN" },
+        { label: "Déploiement", value: "Vercel (prod)" },
+        { label: "Layout shifts", value: "0 (CLS = 0)" },
+      ],
+      learnings: [
+        "GSAP est la référence mondiale pour les animations web complexes — pas un luxe, un outil de précision.",
+        "Enregistrer ScrollTrigger une seule fois dans un module partagé évite les conflits de plugins.",
+        "Une agence doit manger sa propre cuisine : si tu vends du web premium, ton site doit être le meilleur exemple de ce que tu fais.",
       ],
     },
   },
