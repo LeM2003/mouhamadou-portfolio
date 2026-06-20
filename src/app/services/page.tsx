@@ -58,6 +58,15 @@ const offers = [
     eur: "TJM · selon mission",
     delay: "Flexible",
   },
+  {
+    num: "06",
+    title: "Conseil Data & Analyse",
+    desc: "Exploration de vos données, dashboards clairs, premiers modèles prédictifs. Issu de mon Master Data Science & IA — pensé pour des décisions business, pas pour un rapport académique qui dort dans un tiroir.",
+    feats: ["Analyse exploratoire", "Dashboards", "Modèles simples"],
+    fcfa: "dès 200k FCFA",
+    eur: "dès 350 €",
+    delay: "≈ 1 semaine",
+  },
 ];
 
 const steps = [
@@ -110,7 +119,7 @@ export default function ServicesPage() {
             Ce que je construis pour vous.
           </h2>
           <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] hidden md:block">
-            05 offres
+            06 offres
           </div>
         </div>
 
