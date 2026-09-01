@@ -18,9 +18,9 @@ const focuses = [
   {
     num: "02",
     category: "Projets en Production",
-    title: "Personal OS V2 · Olèle Systems",
+    title: "Personal OS V2 · Liggeyo",
     description:
-      "Personal OS V2 : dashboard IA local-first pour étudiants et entrepreneurs africains (personal-os.click). Olèle Systems : LMS certifiant en production avec clients réels. Les deux sur Next.js 16 + Supabase + Vercel.",
+      "Personal OS V2 : dashboard IA local-first pour étudiants et entrepreneurs africains (personal-os.click). Liggeyo : SaaS LMS marque blanche (Cockpit + espace formateur), avec Olèle Systems comme client en production. Les deux sur Next.js 16 + Supabase + Vercel.",
   },
   {
     num: "03",

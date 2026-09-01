@@ -1,9 +1,15 @@
 /**
  * Mini-corpus + helpers RAG pour le playground visuel.
  *
- * V1 : embeddings DÉTERMINISTES (mots-clés → projection 2D cohérente).
- *      Pas de vraie API d'embeddings, mais le résultat visuel est crédible
- *      et l'architecture est PRÊTE à brancher Groq embeddings en V2.
+ * Retrieval : embeddings DÉTERMINISTES (mots-clés → projection 2D cohérente).
+ *      Pas de vraie API d'embeddings — c'est volontaire, ça rend la mécanique
+ *      du RAG visible plutôt qu'une boîte noire. Groq n'expose pas
+ *      d'endpoint d'embeddings (vérifié) ; un vrai upgrade passerait par un
+ *      autre fournisseur (OpenAI) ou un modèle client-side (transformers.js).
+ *
+ * Génération : voir /api/rag/answer — un vrai modèle Groq synthétise une
+ *      réponse ancrée sur les chunks récupérés ici, avec citation des
+ *      sources et refus explicite hors corpus.
  *
  * Note : un vrai embedding cosinus serait dans R^1536 (OpenAI) ou R^768
  * (sentence-transformers). On le projette en R^2 pour la viz.
@@ -28,7 +34,7 @@ export type Chunk = {
 export const corpus: Chunk[] = [
   {
     id: "olele-1",
-    text: "Olèle Systems est une plateforme LMS Next.js 16 avec formations vidéo et quiz certifiants pour la diaspora africaine.",
+    text: "Olèle Systems (olelesystems.company) est un espace LMS déployé sur Liggeyo, la plateforme SaaS marque blanche de Mouhamadou — formations vidéo et quiz certifiants pour la diaspora africaine.",
     source: "Olèle Systems · description",
     coords: { x: 28, y: 35 },
     topics: ["lms", "formation", "produit", "education"],
@@ -114,10 +120,10 @@ export function chunkQuery(query: string): string[] {
 /**
  * Projection 2D déterministe d'une query.
  *
- * V1 : moyenne pondérée des coords des chunks dont les topics matchent
- *      les tokens de la query. Plus on a de matches, plus on est proche
- *      de ces chunks.
- * V2 (future) : embedding via Groq API, puis projection UMAP/t-SNE.
+ * Moyenne pondérée des coords des chunks dont les topics matchent
+ * les tokens de la query. Plus on a de matches, plus on est proche
+ * de ces chunks. (Upgrade possible : embeddings OpenAI/transformers.js
+ * + projection UMAP/t-SNE — pas Groq, qui n'a pas d'endpoint embeddings.)
  */
 export function projectQuery(query: string): { x: number; y: number } {
   const tokens = chunkQuery(query);

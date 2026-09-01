@@ -35,9 +35,46 @@ export default function RagPlaygroundPage() {
   const retrieved = useMemo(() => (query ? retrieve(query, 3) : []), [query]);
   const retrievedIds = new Set(retrieved.map((r) => r.id));
 
+  const [answerState, setAnswerState] = useState<
+    | { status: "idle" }
+    | { status: "loading" }
+    | { status: "error"; message: string }
+    | { status: "done"; answer: string; sources: { ref: number; source: string }[] }
+  >({ status: "idle" });
+
   function handleRun(value: string) {
     setQuery(value);
     setHasRun(value.trim().length >= 2);
+    setAnswerState({ status: "idle" });
+  }
+
+  async function handleGenerate() {
+    if (!query.trim() || retrieved.length === 0) return;
+    setAnswerState({ status: "loading" });
+    try {
+      const res = await fetch("/api/rag/answer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query,
+          chunkIds: retrieved.map((r) => r.id),
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAnswerState({
+          status: "error",
+          message: data.error || "Erreur inconnue.",
+        });
+        return;
+      }
+      setAnswerState({ status: "done", answer: data.answer, sources: data.sources });
+    } catch {
+      setAnswerState({
+        status: "error",
+        message: "Impossible de joindre le service de génération.",
+      });
+    }
   }
 
   return (
@@ -401,25 +438,106 @@ export default function RagPlaygroundPage() {
         </section>
       </ScrollReveal>
 
+      {/* ── STAGE 4 : GÉNÉRATION (vrai LLM, ancré sur le retrieval) ── */}
+      <ScrollReveal>
+        <section className="px-6 md:px-12 lg:px-20 py-16 max-w-6xl mx-auto w-full border-t border-[var(--hairline)]">
+          <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-6 flex items-center gap-3">
+            <span>04</span>
+            <span className="w-8 h-px bg-[var(--hairline)]" />
+            <span>Génération · réponse ancrée</span>
+          </div>
+          <h2 className="font-[family-name:var(--font-display)] text-2xl md:text-3xl mb-6">
+            La seule étape qui a besoin d&apos;un{" "}
+            <span className="text-[var(--accent)] italic">vrai LLM</span>.
+          </h2>
+          <p className="font-mono text-xs text-[var(--muted)] mb-8 max-w-xl leading-relaxed">
+            Le retrieval ci-dessus reste 100% déterministe (c&apos;est le
+            point pédagogique). Ce bouton envoie les {retrieved.length || 3}{" "}
+            chunks récupérés à un modèle Groq, avec ordre strict : répondre
+            uniquement à partir de ces extraits, citer les sources, ou dire
+            explicitement qu&apos;il n&apos;a pas l&apos;info plutôt
+            qu&apos;inventer.
+          </p>
+
+          {retrieved.length === 0 ? (
+            <p className="font-mono text-sm text-[var(--muted)] italic">
+              ↳ tape une query pour activer la génération
+            </p>
+          ) : (
+            <div>
+              <button
+                type="button"
+                onClick={handleGenerate}
+                disabled={answerState.status === "loading"}
+                className="font-mono text-xs uppercase tracking-[0.15em] px-5 py-3 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-[var(--background)] transition-colors disabled:opacity-40"
+              >
+                {answerState.status === "loading"
+                  ? "Génération…"
+                  : "Générer une réponse ancrée"}
+              </button>
+
+              <AnimatePresence mode="wait">
+                {answerState.status === "error" && (
+                  <motion.p
+                    key="error"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="mt-6 font-mono text-xs text-[var(--muted)] italic max-w-xl"
+                  >
+                    ↳ {answerState.message}
+                  </motion.p>
+                )}
+
+                {answerState.status === "done" && (
+                  <motion.div
+                    key="done"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="mt-8 max-w-2xl border-l-2 border-[var(--accent)] pl-6"
+                  >
+                    <p className="text-base md:text-lg text-[var(--foreground)] leading-relaxed">
+                      {answerState.answer}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                      {answerState.sources.map((s) => (
+                        <span key={s.ref}>
+                          [{s.ref}] {s.source}
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
+        </section>
+      </ScrollReveal>
+
       {/* ── FOOTER ── */}
       <section className="px-6 md:px-12 lg:px-20 py-16 max-w-6xl mx-auto w-full border-t border-[var(--hairline)]">
         <p className="text-sm text-[var(--muted)] leading-relaxed max-w-2xl">
-          <strong className="text-[var(--foreground)]">V1 déterministe :</strong>{" "}
+          <strong className="text-[var(--foreground)]">Retrieval — déterministe :</strong>{" "}
           les coordonnées 2D sont calculées par matching de mots-clés (pas
-          un vrai embedding LLM). Suffisant pour la pédagogie.
+          un vrai embedding LLM). Volontaire — c&apos;est ce qui rend la
+          mécanique du RAG visible plutôt qu&apos;une boîte noire.
           <br />
           <br />
-          <strong className="text-[var(--foreground)]">V2 (à venir) :</strong>{" "}
-          appel à Groq embeddings sur le corpus, projection UMAP/t-SNE en R²,
-          retrieval cosinus réel. L&apos;UI reste identique — c&apos;est tout
-          le point d&apos;une architecture pensée pour évoluer.
+          <strong className="text-[var(--foreground)]">Génération — réelle :</strong>{" "}
+          l&apos;étape 04 appelle un vrai modèle (Groq, <code>llama-3.1-8b-instant</code>)
+          ancré strictement sur les chunks récupérés ci-dessus. Note technique :
+          Groq n&apos;expose pas d&apos;endpoint d&apos;embeddings à ce jour —
+          la projection 2D restera donc déterministe tant qu&apos;un
+          fournisseur d&apos;embeddings (ou un modèle client-side type
+          transformers.js) n&apos;est pas branché à la place.
         </p>
       </section>
 
       <footer className="px-6 md:px-12 lg:px-20 py-12 mt-auto border-t border-[var(--hairline)]">
         <div className="max-w-6xl mx-auto flex items-center justify-between text-xs text-[var(--muted)] font-mono">
           <div>© {new Date().getFullYear()} Mouhamadou Diouf</div>
-          <div>/lab/rag · v1 déterministe</div>
+          <div>/lab/rag · retrieval déterministe + génération Groq</div>
         </div>
       </footer>
     </main>

@@ -2,31 +2,37 @@
 
 ## Où on en est
 
-- Portfolio v3.0 "éditorial" en production (mouhamadou-portfolio.vercel.app), branche `feat/phase1-living-portfolio`.
-- Page `/collaboration` (CV-like pour recruteurs/CDI) + `PrintCvButton` + styles d'impression + intent command palette "collaboration/CDI" — committés (3230252).
-- `src/data/projects.ts` : 3 nouveaux projets ajoutés (Liggeyo, DABA Email Assistant, Ndimbeul), stack 04→08 projets. Compteurs "Chiffres réels" et "Présence & preuve" (page.tsx) mis à jour en conséquence, stats LinkedIn rafraîchies (440/455).
-- `mouhamadou-cv` (Vite/React/GSAP, prompt izisaas dédié) : CV en ligne one-shot fini côté design, PDF branché dans `public/`, pas encore git-initialisé ni déployé.
+- Portfolio v3.0 "éditorial" en production (mouhamadou-portfolio.vercel.app), branche `feat/phase1-living-portfolio`. 3 commits locaux prêts à pousser (`3230252`, `2af1812`, `05411db`, `<commit du jour>`) — push bloqué depuis ce shell (pas de credentials git), à faire manuellement par LeM.
+- `mouhamadou-cv` : CV en ligne one-shot (izisaas/Antigravity) — poussé sur GitHub (`LeM2003/mouhamadou-cv`), lié à Vercel, déployé (`mouhamadou-cv-lem2003s-projects.vercel.app`).
+- `src/data/projects.ts` : 8 projets (dont Liggeyo, DABA Email Assistant, Ndimbeul ajoutés cette session). Compteurs page d'accueil et stats LinkedIn à jour.
+- **Architecture Liggeyo clarifiée et propagée** : Liggeyo = Cockpit (landing publique, liggeyo.com) + LMS marque blanche (espace formateur : contenu, certificats, apprenants, paiements Wave/OM/Free Money/MTN). Olèle Systems (olelesystems.company) est un espace LMS déployé pour ce client, comme n'importe quel autre formateur — pas une agence séparée. Corrigé dans `projects.ts` (fiche liggeyo), `now/page.tsx`, et `lib/ragPlayground/corpus.ts`.
+- **`/lab/rag` — nouvelle étape 04 "Génération"** : le retrieval reste déterministe (pédagogique, volontaire), mais une vraie réponse LLM ancrée est maintenant générée via une route serveur `/api/rag/answer` (Groq, `llama-3.1-8b-instant`), strictement bornée aux chunks récupérés, avec citation des sources et refus explicite hors corpus. Correction au passage : le code affirmait à tort que Groq expose un endpoint d'embeddings — vérifié (recherche web, doc officielle console.groq.com) que ce n'est pas le cas. La projection 2D reste donc déterministe ; un vrai upgrade d'embeddings passerait par un autre fournisseur (OpenAI) ou un modèle client-side (transformers.js), pas Groq.
 
-## Pas encore construit
+## Pas encore construit / bloqué sur une décision ou une action de LeM
 
-- Push du commit `3230252` sur `origin/feat/phase1-living-portfolio` — bloqué : pas de credentials git dans le shell distant utilisé pour cette session. À pousser manuellement.
-- `mouhamadou-cv` : git init + repo + déploiement Vercel.
-- Décision sur `flagshipProjectSlugs` (profile.ts, page /collaboration) : Liggeyo n'y figure pas encore — à ajouter si LeM veut le mettre en avant pour les recruteurs.
+- **Push git du portfolio** — LeM doit lancer `git push origin feat/phase1-living-portfolio` depuis son terminal.
+- **`GROQ_API_KEY`** — la route `/api/rag/answer` répond 501 (proprement, sans casser la page) tant que cette variable n'est pas définie. LeM doit : créer une clé sur console.groq.com, l'ajouter en local (`.env.local`, gitignored) ET dans les env vars du projet Vercel `mouhamadou-portfolio` (Production + Preview), puis redéployer.
+- Décision sur `flagshipProjectSlugs` (profile.ts) : Liggeyo n'y figure toujours pas.
+- Attribution ASTC BTP / "audits digitaux exécutifs" : toujours non confirmée (absente de tout le dossier Auryntix vérifié).
+- Le "challenge" annoncé deux fois par LeM en conversation n'a jamais été précisé.
 
 ## Décisions d'architecture à connaître
 
-- Les 3 nouvelles fiches projet (Liggeyo, DABA, Ndimbeul) sont volontairement plus sobres que les fiches existantes (Olèle, Personal OS, Auryntix) sur `fullStack`/`keyDecisions`/`metrics` : seuls des faits confirmés par LeM ont été utilisés, aucune stack technique ni métrique n'a été inventée. À enrichir avec de vraies spécificités techniques quand LeM les fournira.
-- `status` de Liggeyo et Ndimbeul mis à "active" (pas "production") par prudence — Liggeyo a une phase d'enregistrement d'entreprise en cours en parallèle de son usage réel (olelesystems.company).
+- Les fiches Liggeyo/DABA/Ndimbeul restent volontairement sobres (pas de stack/métriques inventées) — à enrichir quand LeM fournira les vraies spécificités.
+- `/lab/rag` : séparation stricte retrieval (déterministe, client-side, pédagogique) / génération (vrai LLM, serveur, ancré). Ne pas fusionner les deux — la valeur pédagogique de l'étape retrieval dépend de sa transparence totale.
+- Modèle Groq par défaut : `llama-3.1-8b-instant` (override possible via `GROQ_MODEL`). Choisi pour vitesse/coût ; à revérifier sur console.groq.com/docs/models si le modèle est déprécié.
 
 ## Limitations connues (assumées, pas des bugs à corriger silencieusement)
 
-- **Relation Olèle Systems ↔ Liggeyo pas totalement stabilisée dans le contenu.** La fiche `olele-systems` existante décrit un projet client bespoke (repo privé, stack sur-mesure) sans mention de Liggeyo. Le texte ajouté sur la fiche `liggeyo` affirme qu'olelesystems.company "est un déploiement client en production sur la plateforme" — cohérent avec ce que LeM a dit en conversation, mais pas encore reflété dans la fiche `olele-systems` elle-même. Ne pas réécrire la fiche `olele-systems` sans confirmation explicite de LeM sur la chronologie exacte (bespoke d'abord, généralisé en SaaS ensuite ?).
-- **Attribution des missions clients (ASTC BTP, "audits digitaux exécutifs") non résolue.** Une note mémoire antérieure les associait à "Olèle Systems" comme agence de LeM — LeM a explicitement contesté ce lien en session et a renvoyé vers le dossier `Auryntix` sur son PC pour clarifier. Vérification faite : ASTC BTP n'apparaît dans aucun des dossiers `Auryntix/Clients` (seulement Daaru et MCE_Senegal). La bonne attribution reste à confirmer avec LeM avant de l'écrire où que ce soit sur le portfolio.
+- **Relation Olèle Systems ↔ Liggeyo dans la fiche `olele-systems` elle-même** : cette fiche décrit toujours un projet client bespoke sans mention explicite de Liggeyo/LMS. Cohérent pour l'instant avec la fiche `liggeyo` (qui, elle, mentionne Olèle), mais pas encore harmonisé dans les deux sens. Ne pas réécrire `olele-systems` sans confirmation de LeM sur la chronologie exacte.
+- **Attribution ASTC BTP** : non résolue, voir ci-dessus.
 
 ## Dernier audit de sécurité
 
-Aucun effectué dans cette session — travail purement contenu/data, pas de code touchant auth/paiement/RLS.
+Aucun effectué cette session. La nouvelle route `/api/rag/answer` ne touche ni auth ni RLS ni paiement — elle lit uniquement le corpus statique en mémoire et proxy un appel Groq server-side (clé jamais exposée au client). Pas de rate-limiting ajouté : à surveiller si le trafic augmente (coût Groq + abus possible du endpoint).
 
 ## Prochaine étape suggérée
 
-Pousser le commit vers GitHub (depuis un terminal authentifié), vérifier le déploiement preview Vercel du contenu ajouté, puis trancher les deux points ouverts ci-dessus avec LeM avant tout merge vers la branche de production.
+1. LeM pousse le portfolio + ajoute `GROQ_API_KEY` sur Vercel.
+2. LeM exécute le prompt d'audit Antigravity (fourni en conversation) pour obtenir un angle d'analyse externe (UX/conversion) sur le portfolio actuel, et en rapporte les résultats.
+3. Trancher les points ouverts ci-dessus (flagship Liggeyo, ASTC BTP, olele-systems ↔ liggeyo) avant tout merge vers la branche de production.
