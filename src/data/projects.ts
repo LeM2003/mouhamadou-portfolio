@@ -343,17 +343,18 @@ export const projects: Project[] = [
     context: "Lancer sa propre école en ligne marque blanche en 24h, pour l'Afrique francophone",
     decision: "Paiements mobiles locaux (Wave, Orange Money, Free Money, MTN) et 0% commission plutôt que les rails de paiement occidentaux",
     cursorText: "Marque blanche · Mobile Money",
-    stack: ["SaaS multi-tenant", "Wave / Orange Money", "Marque blanche"],
+    stack: ["Cockpit (landing marketing)", "LMS marque blanche multi-tenant", "Wave / Orange Money"],
     repoUrl: null,
     liveUrl: "https://liggeyo.com",
     caseStudy: {
       problem:
         "Les formateurs et créateurs de contenu francophones qui veulent vendre des formations en ligne dépendent de plateformes américaines (Kajabi, Teachable) facturées en dollars, avec leur branding imposé et des moyens de paiement inadaptés au marché africain — pas de Wave, pas d'Orange Money.",
       solution:
-        "Liggeyo permet à un formateur de lancer sa propre école en ligne marque blanche (domaine personnalisé, logo, couleurs) en 24h : upload de contenu (vidéos, PDF, quiz), certificats personnalisés, suivi des apprenants, paiements Wave/Orange Money/Free Money/MTN intégrés, 0% de commission sur les ventes. Olèle Systems (olelesystems.company) est un déploiement client en production sur la plateforme.",
+        "Liggeyo se compose de deux briques : un Cockpit (la landing page publique, liggeyo.com) et un LMS marque blanche — l'espace réservé au formateur pour lancer sa propre école en ligne (domaine personnalisé, logo, couleurs) en 24h, uploader son contenu (vidéos, PDF, quiz), délivrer des certificats, suivre ses apprenants et encaisser via Wave/Orange Money/Free Money/MTN, 0% de commission. Olèle Systems (olelesystems.company) est un espace LMS déployé pour ce client, au même titre qu'un espace formateur.",
       fullStack: [
+        "Cockpit public (landing, acquisition)",
+        "LMS multi-tenant marque blanche (espace formateur : contenu, certificats, apprenants)",
         "Paiements Wave / Orange Money / Free Money / MTN",
-        "Architecture multi-tenant marque blanche (domaine, logo, couleurs personnalisables)",
       ],
       keyDecisions: [
         {
