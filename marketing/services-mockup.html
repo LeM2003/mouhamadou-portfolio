@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — Mouhamadou Diouf (maquette)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#f5f0e8; --foreground:#1a0f08; --accent:#b04a23;
+    --accent-soft:#d4a373; --muted:#7a6a5a; --hairline:#c9b9a3; --border:#d9cdba;
+    --display:'Fraunces',Georgia,serif; --sans:'Geist',system-ui,sans-serif; --mono:'Geist Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--background);color:var(--foreground);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1152px;margin:0 auto;width:100%;}
+  .px{padding-left:48px;padding-right:48px;}
+  .label{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.2em;color:var(--muted);display:flex;align-items:center;gap:12px;}
+  .label .bar{width:32px;height:1px;background:var(--hairline);display:inline-block;}
+  .disp{font-family:var(--display);font-weight:400;line-height:.95;letter-spacing:-.02em;}
+  .it{font-style:italic;color:var(--accent);}
+  .accent{color:var(--accent);}
+
+  /* NAV */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 48px;border-bottom:1px solid var(--hairline);}
+  nav .brand{font-family:var(--display);font-style:italic;font-size:22px;color:var(--accent);}
+  nav .links{display:flex;gap:26px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);}
+  nav .links a{color:var(--muted);text-decoration:none;}
+  nav .links a.active{color:var(--foreground);}
+
+  /* HERO */
+  .hero{padding:70px 48px 60px;position:relative;overflow:hidden;}
+  .hero .ghost{position:absolute;top:-40px;right:0;font-family:var(--display);font-style:italic;font-size:24rem;line-height:.78;color:var(--accent);opacity:.06;pointer-events:none;letter-spacing:-.04em;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--accent);border:1px solid var(--accent);padding:6px 12px;margin-bottom:28px;}
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .hero h1{font-size:80px;max-width:900px;margin-top:14px;}
+  .hero p{margin-top:30px;max-width:640px;font-size:19px;line-height:1.65;color:var(--muted);}
+
+  /* OFFERS */
+  .sec{padding:60px 48px;border-top:1px solid var(--hairline);}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:44px;padding-bottom:16px;border-bottom:1px solid var(--hairline);}
+  .sec-head h2{font-family:var(--display);font-size:36px;}
+  .offers{display:flex;flex-direction:column;}
+  .offer{display:grid;grid-template-columns:64px 1fr 230px;gap:28px;padding:32px 0;border-bottom:1px solid var(--hairline);align-items:start;}
+  .offer .num{font-family:var(--display);font-style:italic;font-size:40px;color:var(--accent-soft);line-height:1;}
+  .offer h3{font-family:var(--display);font-size:27px;margin-bottom:8px;}
+  .offer .desc{font-size:15px;color:var(--muted);line-height:1.6;max-width:430px;}
+  .offer .feats{margin-top:14px;display:flex;flex-wrap:wrap;gap:7px;}
+  .offer .feats span{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);border:1px solid var(--hairline);padding:4px 8px;}
+  .offer .price{text-align:right;}
+  .offer .price .fcfa{font-family:var(--display);font-size:30px;line-height:1.05;}
+  .offer .price .eur{font-family:var(--mono);font-size:13px;color:var(--muted);margin-top:4px;}
+  .offer .price .delay{margin-top:10px;display:inline-block;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);border:1px solid var(--accent);padding:4px 9px;}
+
+  /* PROCESS */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;}
+  .step{padding:0 26px 0 0;border-right:1px solid var(--hairline);}
+  .step:last-child{border-right:none;}
+  .step .s-num{font-family:var(--display);font-style:italic;font-size:44px;color:var(--accent);opacity:.32;margin-bottom:14px;}
+  .step h4{font-family:var(--display);font-size:20px;margin-bottom:8px;}
+  .step p{font-size:14px;color:var(--muted);line-height:1.6;}
+
+  /* CTA */
+  .cta{border:1px solid var(--hairline);padding:56px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px;}
+  .cta h2{font-family:var(--display);font-size:54px;line-height:.98;max-width:560px;}
+  .cta p{margin-top:20px;color:var(--muted);max-width:420px;line-height:1.6;}
+  .cta .btns{display:flex;flex-direction:column;gap:14px;flex-shrink:0;}
+  .cta .btn-p{background:var(--accent);color:var(--background);font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;padding:16px 30px;text-align:center;text-decoration:none;}
+  .cta .btn-s{border:1px solid var(--hairline);font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.1em;padding:16px 30px;text-align:center;text-decoration:none;color:var(--foreground);}
+
+  footer{padding:50px 48px;border-top:1px solid var(--hairline);display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted);}
+
+  /* MOBILE */
+  @media(max-width:560px){
+    .px,nav,.hero,.sec,footer{padding-left:22px;padding-right:22px;}
+    nav .links{gap:14px;}
+    .hero{padding-top:48px;}
+    .hero h1{font-size:44px;}
+    .hero .ghost{font-size:12rem;top:-10px;}
+    .hero p{font-size:16px;}
+    .sec-head h2{font-size:26px;}
+    .offer{grid-template-columns:1fr;gap:14px;padding:26px 0;}
+    .offer .price{text-align:left;}
+    .offer .num{font-size:32px;}
+    .steps{grid-template-columns:1fr 1fr;gap:28px 20px;}
+    .step{border-right:none;padding-right:0;}
+    .cta{flex-direction:column;align-items:stretch;padding:32px;}
+    .cta h2{font-size:34px;}
+    .cta .btns{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <div class="brand">MD</div>
+    <div class="links"><a href="#">Projets</a><a href="#" class="active">Services</a><a href="#">Carte</a><a href="#">Maintenant</a></div>
+  </nav>
+
+  <header class="hero">
+    <div class="ghost">02</div>
+    <div class="badge"><span class="dot"></span> Disponible · missions freelance</div>
+    <div class="label"><span>02</span><span class="bar"></span><span>Services & Tarifs</span></div>
+    <h1 class="disp">Des offres <span class="it">claires</span>. Des prix <span class="it">affichés</span>. Livré vite.</h1>
+    <p>Pas de devis flou ni de « ça dépend ». Voici exactement ce que je construis, en combien de temps, et combien ça coûte. Du site qui convertit au SaaS avec l'IA intégrée dès l'architecture.</p>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Ce que je construis pour vous.</h2>
+      <div class="label">05 offres</div>
+    </div>
+    <div class="offers">
+
+      <div class="offer">
+        <div class="num">01</div>
+        <div>
+          <h3>Landing &amp; tunnel de vente</h3>
+          <p class="desc">Une page unique qui convertit : copy persuasive, design soigné, déploiement. Idéale pour vendre une formation, un produit ou capter des leads.</p>
+          <div class="feats"><span>Copy + Design</span><span>Responsive</span><span>Déploiement inclus</span></div>
+        </div>
+        <div class="price"><div class="fcfa">150–300k FCFA</div><div class="eur">250–500 €</div><div class="delay">≈ 5 jours</div></div>
+      </div>
+
+      <div class="offer">
+        <div class="num">02</div>
+        <div>
+          <h3>Site vitrine professionnel</h3>
+          <p class="desc">4 à 6 pages, responsive, SEO de base, mini-CMS pour gérer le contenu. Pour donner à votre activité une présence web qui inspire confiance.</p>
+          <div class="feats"><span>4–6 pages</span><span>SEO</span><span>CMS simple</span></div>
+        </div>
+        <div class="price"><div class="fcfa">350–600k FCFA</div><div class="eur">600–1000 €</div><div class="delay">≈ 2 semaines</div></div>
+      </div>
+
+      <div class="offer">
+        <div class="num">03</div>
+        <div>
+          <h3>MVP SaaS / Application web</h3>
+          <p class="desc">Votre idée transformée en produit utilisable : authentification, base de données, 2–3 fonctionnalités clés, déployé. Next.js + Supabase.</p>
+          <div class="feats"><span>Auth + BDD</span><span>Next.js · Supabase</span><span>En production</span></div>
+        </div>
+        <div class="price"><div class="fcfa">dès 800k FCFA</div><div class="eur">dès 1500 €</div><div class="delay">3–5 semaines</div></div>
+      </div>
+
+      <div class="offer">
+        <div class="num">04</div>
+        <div>
+          <h3>Intégration IA</h3>
+          <p class="desc">Chatbot RAG, assistant intelligent, automatisation — greffés sur votre produit existant. De l'IA utile, pensée comme un produit, pas un widget collé.</p>
+          <div class="feats"><span>LLM · RAG</span><span>Agents</span><span>Automatisation</span></div>
+        </div>
+        <div class="price"><div class="fcfa">dès 400k FCFA</div><div class="eur">dès 700 €</div><div class="delay">1–2 semaines</div></div>
+      </div>
+
+      <div class="offer">
+        <div class="num">05</div>
+        <div>
+          <h3>Régie / renfort d'équipe (remote)</h3>
+          <p class="desc">Je rejoins votre équipe comme dev / product builder, au jour ou à la semaine. Remote depuis Dakar, fuseau EU-friendly (GMT+0).</p>
+          <div class="feats"><span>Dev + Product</span><span>Remote</span><span>EU-friendly</span></div>
+        </div>
+        <div class="price"><div class="fcfa">150–300 € / jour</div><div class="eur">TJM · selon mission</div><div class="delay">Flexible</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><h2>Comment on travaille.</h2><div class="label">04 étapes</div></div>
+    <div class="steps">
+      <div class="step"><div class="s-num">A</div><h4>On échange</h4><p>15 min pour comprendre votre besoin réel. Gratuit, sans engagement.</p></div>
+      <div class="step"><div class="s-num">B</div><h4>Devis clair</h4><p>Prix ferme, périmètre précis, délai annoncé. Aucune surprise.</p></div>
+      <div class="step"><div class="s-num">C</div><h4>Je construis</h4><p>Vous suivez l'avancement. Itérations rapides, communication directe.</p></div>
+      <div class="step"><div class="s-num">D</div><h4>Livré &amp; déployé</h4><p>En ligne, fonctionnel, à vous. Avec un temps de support après livraison.</p></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="cta">
+      <div>
+        <h2 class="disp">Un projet en tête ? <span class="it">Parlons-en.</span></h2>
+        <p>Réponse sous 24h. Premier échange gratuit. Disponible pour missions freelance et collaborations long terme.</p>
+      </div>
+      <div class="btns">
+        <a href="#" class="btn-p">Discuter sur WhatsApp →</a>
+        <a href="#" class="btn-s">Email direct</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Mouhamadou Diouf · Dakar 🇸🇳</div>
+    <div>Services · v1 maquette</div>
+  </footer>
+</body>
+</html>

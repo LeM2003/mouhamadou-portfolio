@@ -95,7 +95,7 @@ export function CustomCursor() {
       {/* Ring : élément central du curseur — grandit selon le contexte */}
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed top-0 left-0 z-[9998] rounded-full border flex items-center justify-center"
+        className="print:hidden pointer-events-none fixed top-0 left-0 z-[9998] rounded-full border flex items-center justify-center"
         style={{
           x: ringX,
           y: ringY,
@@ -140,7 +140,7 @@ export function CustomCursor() {
       {!hasText && (
         <motion.div
           aria-hidden
-          className="pointer-events-none fixed top-0 left-0 z-[9999] w-1.5 h-1.5 rounded-full bg-[var(--foreground)] mix-blend-difference"
+          className="print:hidden pointer-events-none fixed top-0 left-0 z-[9999] w-1.5 h-1.5 rounded-full bg-[var(--foreground)] mix-blend-difference"
           style={{
             x: dotX,
             y: dotY,

@@ -43,7 +43,7 @@ export function ScrollReveal({
         ease: [0.22, 1, 0.36, 1],
         delay,
       }}
-      className={className}
+      className={`scroll-reveal${className ? ` ${className}` : ""}`}
     >
       {children}
     </motion.div>

@@ -4,7 +4,7 @@ import { CommandPaletteTrigger } from "./CommandPaletteTrigger";
 
 export function Nav() {
   return (
-    <nav className="px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between gap-6">
+    <nav className="print:hidden px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between gap-6">
       <Link
         href="/"
         className="font-[family-name:var(--font-display)] text-xl tracking-tight shrink-0"
@@ -31,6 +31,12 @@ export function Nav() {
           className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
         >
           Services
+        </Link>
+        <Link
+          href="/collaboration"
+          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
+        >
+          Collaboration
         </Link>
         <Link
           href="/lab/rag"

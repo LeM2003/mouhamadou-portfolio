@@ -31,7 +31,7 @@ export type Intent = {
   /** Mots-clés à matcher (lowercase) — au moins UN doit être présent dans la query */
   keywords: string[];
   /** Catégorie pour l'UI */
-  category: "tech" | "product" | "contact" | "about" | "freelance";
+  category: "tech" | "product" | "contact" | "about" | "freelance" | "collaboration";
   /** Actions à mettre en avant quand l'intent est matché */
   actions: Action[];
   /** Génère une réponse éditoriale contextuelle */
@@ -94,6 +94,29 @@ export const intents: Intent[] = [
     ],
     response: () =>
       "Disponible en freelance pour : sites/e-commerce/SaaS · intégration IA (LLM, RAG, chatbots) · audit produit. Fuseau Dakar = EU-friendly. WhatsApp ouvert 7h–23h.",
+  },
+  {
+    id: "collaboration-cdi",
+    keywords: [
+      "cdi",
+      "collaboration",
+      "long terme",
+      "équipe",
+      "recrutement",
+      "recruteur",
+      "rejoindre",
+      "salarié",
+      "embaucher",
+      "poste",
+      "full-time",
+    ],
+    category: "collaboration",
+    actions: [
+      { kind: "route", path: "/collaboration", label: "Page collaboration / CV" },
+      { kind: "external", url: "https://www.linkedin.com/in/mouhamadoudiouf", label: "LinkedIn" },
+    ],
+    response: () =>
+      "Ouvert à une collaboration long terme / CDI remote. Page collaboration avec parcours, stack et projets clés — pensée pour les recruteurs et équipes tech.",
   },
   {
     id: "contact-talk",

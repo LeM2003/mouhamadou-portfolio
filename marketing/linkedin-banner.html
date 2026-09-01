@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>Bannière LinkedIn — Mouhamadou Diouf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#f5f0e8; --foreground:#1a0f08; --accent:#b04a23;
+    --accent-soft:#d4a373; --muted:#7a6a5a; --hairline:#c9b9a3;
+    --display:'Fraunces',Georgia,serif; --mono:'Geist Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{width:1584px;height:396px;background:var(--background);color:var(--foreground);
+       font-family:var(--mono);position:relative;overflow:hidden;}
+  .ghost{position:absolute;top:-60px;right:-40px;font-family:var(--display);font-style:italic;
+         font-size:520px;line-height:.78;color:var(--accent);opacity:.07;letter-spacing:-.04em;
+         pointer-events:none;user-select:none;}
+  .grain{position:absolute;inset:0;background-image:linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+         background-size:64px 100%;opacity:.25;}
+  .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;
+            justify-content:center;padding:0 90px 0 260px;}
+  .label{display:flex;align-items:center;gap:14px;font-size:15px;text-transform:uppercase;
+         letter-spacing:.22em;color:var(--accent);margin-bottom:22px;}
+  .label .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+  .label .bar{width:46px;height:1px;background:var(--hairline);}
+  h1{font-family:var(--display);font-weight:400;font-size:74px;line-height:1.04;letter-spacing:-.01em;
+     max-width:980px;}
+  h1 .it{font-style:italic;color:var(--accent);}
+  .sub{margin-top:22px;font-family:var(--mono);font-size:19px;color:var(--muted);letter-spacing:.01em;
+       max-width:760px;line-height:1.5;}
+  .tags{margin-top:30px;display:flex;gap:12px;}
+  .tags span{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--foreground);
+             border:1px solid var(--foreground);padding:7px 16px;}
+</style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="ghost">MD</div>
+  <div class="content">
+    <div class="label"><span class="dot"></span>Disponible · missions freelance<span class="bar"></span>Dakar 🇸🇳</div>
+    <h1>Je construis des produits où <span class="it">l'IA</span><br/>est une décision d'architecture.</h1>
+    <div class="sub">AI Product Builder & Product Owner · Next.js · Supabase · LLMs · mouhamadou-portfolio.vercel.app</div>
+    <div class="tags"><span>MVP SaaS</span><span>Intégration IA</span><span>Sites & Landing</span></div>
+  </div>
+</body>
+</html>

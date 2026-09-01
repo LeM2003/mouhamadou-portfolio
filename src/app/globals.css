@@ -81,3 +81,26 @@ body.custom-cursor-on iframe {
     scroll-behavior: auto !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   Impression (CV /collaboration) — zéro dépendance PDF, on
+   s'appuie sur le browser print.
+   .scroll-reveal reset : whileInView (IntersectionObserver) ne
+   déclenche jamais pour une section jamais scrollée à l'écran ;
+   sans ce reset, tout ce qui n'a pas été vu s'imprime invisible.
+   ───────────────────────────────────────────────────────────── */
+@media print {
+  @page {
+    margin: 1.6cm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #1a0f08 !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
