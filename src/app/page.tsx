@@ -201,7 +201,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
           {[
-            { value: "03", label: "Produits en production · Auryntix · Olèle · Personal OS", delay: 0 },
+            { value: "04", label: "Produits en production · Auryntix · Olèle · Personal OS · DABA", delay: 0 },
             { value: "02", label: "Projets open source · MuslimApp · ImportManager SN", delay: 0.1 },
             { value: "1+", label: "Année Master Data Science / IA · UMEF Dakar", delay: 0.2 },
             { value: "GMT+0", label: "Fuseau Dakar · EU-friendly · 7h–23h disponible", delay: 0.3 },
@@ -274,9 +274,9 @@ export default function Home() {
         </ScrollReveal>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {[
-            { value: "281", label: "Connexions LinkedIn", sub: "réseau professionnel actif" },
-            { value: "286", label: "Abonnés LinkedIn", sub: "en croissance" },
-            { value: "3", label: "Produits en prod", sub: "clients réels · Olèle Systems" },
+            { value: "440", label: "Connexions LinkedIn", sub: "réseau professionnel actif" },
+            { value: "455", label: "Abonnés LinkedIn", sub: "en croissance" },
+            { value: "4", label: "Produits en prod", sub: "clients réels · Olèle · DABA" },
             { value: "2", label: "Open source", sub: "MuslimApp · ImportManager SN" },
           ].map((stat) => (
             <ScrollReveal key={stat.label} y={20}>

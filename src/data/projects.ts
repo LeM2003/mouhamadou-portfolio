@@ -14,7 +14,10 @@ export type ProjectSlug =
   | "personal-os-v2"
   | "muslim-app"
   | "import-manager-sn"
-  | "auryntix";
+  | "auryntix"
+  | "liggeyo"
+  | "daba-email-assistant"
+  | "ndimbeul";
 
 export type Project = {
   slug: ProjectSlug;
@@ -328,6 +331,98 @@ export const projects: Project[] = [
         "Enregistrer ScrollTrigger une seule fois dans un module partagé évite les conflits de plugins.",
         "Une agence doit manger sa propre cuisine : si tu vends du web premium, ton site doit être le meilleur exemple de ce que tu fais.",
       ],
+    },
+  },
+  {
+    slug: "liggeyo",
+    num: "06",
+    name: "Liggeyo",
+    tag: "SaaS LMS marque blanche",
+    year: "2026 — en cours",
+    status: "active",
+    context: "Lancer sa propre école en ligne marque blanche en 24h, pour l'Afrique francophone",
+    decision: "Paiements mobiles locaux (Wave, Orange Money, Free Money, MTN) et 0% commission plutôt que les rails de paiement occidentaux",
+    cursorText: "Marque blanche · Mobile Money",
+    stack: ["SaaS multi-tenant", "Wave / Orange Money", "Marque blanche"],
+    repoUrl: null,
+    liveUrl: "https://liggeyo.com",
+    caseStudy: {
+      problem:
+        "Les formateurs et créateurs de contenu francophones qui veulent vendre des formations en ligne dépendent de plateformes américaines (Kajabi, Teachable) facturées en dollars, avec leur branding imposé et des moyens de paiement inadaptés au marché africain — pas de Wave, pas d'Orange Money.",
+      solution:
+        "Liggeyo permet à un formateur de lancer sa propre école en ligne marque blanche (domaine personnalisé, logo, couleurs) en 24h : upload de contenu (vidéos, PDF, quiz), certificats personnalisés, suivi des apprenants, paiements Wave/Orange Money/Free Money/MTN intégrés, 0% de commission sur les ventes. Olèle Systems (olelesystems.company) est un déploiement client en production sur la plateforme.",
+      fullStack: [
+        "Paiements Wave / Orange Money / Free Money / MTN",
+        "Architecture multi-tenant marque blanche (domaine, logo, couleurs personnalisables)",
+      ],
+      keyDecisions: [
+        {
+          title: "Paiements mobiles locaux plutôt que Stripe/PayPal",
+          rationale:
+            "Le marché cible utilise Wave et Orange Money au quotidien, pas la carte bancaire — les rails de paiement occidentaux auraient exclu la majorité des clients visés.",
+        },
+      ],
+      metrics: [
+        { label: "Activation client", value: "24h" },
+        { label: "Commission plateforme", value: "0%" },
+      ],
+      learnings: [],
+    },
+  },
+  {
+    slug: "daba-email-assistant",
+    num: "07",
+    name: "DABA Email Assistant",
+    tag: "Assistant email IA",
+    year: "2026",
+    status: "production",
+    context: "Assistant email IA pour Gmail/Outlook/Yahoo, co-développé avec Ibrahima Diouf",
+    decision: "Zéro accès à la boîte mail (pas d'OAuth) : lit uniquement l'écran, intervient juste avant l'envoi",
+    cursorText: "Zéro OAuth · Chrome",
+    stack: ["Extension Chrome", "Gmail / Outlook / Yahoo"],
+    repoUrl: null,
+    liveUrl: null,
+    caseStudy: {
+      problem:
+        "La plupart des assistants email IA demandent un accès complet à la boîte mail via OAuth pour «mieux vous aider» — lecture de tous les emails, accès permanent aux données. C'est le compromis confidentialité standard du marché.",
+      solution:
+        "DABA ne demande aucun accès à la boîte mail : pas d'OAuth, pas de lecture de la boîte. Il lit uniquement ce qui est affiché à l'écran au moment où on lui demande d'agir. Parce qu'il est dans la page, il peut intervenir au moment critique — juste avant l'envoi — pour repérer un mauvais destinataire, un reply-all involontaire ou une donnée sensible, et retenir l'email le temps de poser la question.",
+      fullStack: ["Extension Chrome", "Intégration Gmail / Outlook / Yahoo"],
+      keyDecisions: [
+        {
+          title: "Aucun accès mailbox plutôt qu'OAuth complet",
+          rationale:
+            "Retirer une capacité très demandée (l'accès à la boîte) a ouvert une possibilité plus intéressante : intervenir juste avant l'envoi plutôt que se contenter de lire après coup.",
+        },
+      ],
+      metrics: [],
+      learnings: [
+        "Une contrainte technique peut devenir un avantage produit lorsqu'elle force à résoudre le vrai problème.",
+      ],
+    },
+  },
+  {
+    slug: "ndimbeul",
+    num: "08",
+    name: "Ndimbeul",
+    tag: "Vente sans stock",
+    year: "2026",
+    status: "active",
+    context: "Vendre sans stock au Sénégal, construit avec des partenaires",
+    decision: "Catalogue + commande en 1 clic + livraison COD, commissions versées chaque vendredi",
+    cursorText: "Sans stock · COD",
+    stack: ["Marketplace", "Livraison COD"],
+    repoUrl: null,
+    liveUrl: "https://ndimbeul.app",
+    caseStudy: {
+      problem:
+        "Vendre en ligne au Sénégal sans capital de départ pour du stock reste difficile — il faut soit investir dans l'inventaire, soit gérer soi-même la logistique de livraison.",
+      solution:
+        "Ndimbeul propose un catalogue de produits que n'importe qui peut revendre sans détenir de stock : commande en un clic, livraison contre paiement à la réception (COD), commissions versées chaque vendredi aux vendeurs. Construit avec des partenaires, pas en solo.",
+      fullStack: ["Catalogue produits", "Livraison COD", "Paiement des commissions"],
+      keyDecisions: [],
+      metrics: [{ label: "Versement des commissions", value: "Chaque vendredi" }],
+      learnings: [],
     },
   },
 ];
