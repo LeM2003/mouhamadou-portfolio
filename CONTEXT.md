@@ -36,3 +36,15 @@ Aucun effectué cette session. La nouvelle route `/api/rag/answer` ne touche ni 
 1. LeM pousse le portfolio + ajoute `GROQ_API_KEY` sur Vercel.
 2. LeM exécute le prompt d'audit Antigravity (fourni en conversation) pour obtenir un angle d'analyse externe (UX/conversion) sur le portfolio actuel, et en rapporte les résultats.
 3. Trancher les points ouverts ci-dessus (flagship Liggeyo, ASTC BTP, olele-systems ↔ liggeyo) avant tout merge vers la branche de production.
+
+## Suite à l'audit Antigravity (3 personas) du 2026-09-01
+
+Traité côté Claude Code :
+- **Rate limiting `/api/rag/answer`** (signalé Critical par le persona CTO) : ajouté, best-effort en mémoire (8 req/5min par IP, 150 req/h global). Limite connue et assumée : ne survit pas à un cold start, pas partagé entre instances serverless. Upgrade vers Vercel KV/Upstash = décision à prendre par LeM (nouveau service à provisionner).
+- **Bug réel trouvé en creusant le signalement "learnings/metrics vides donnent une impression de rush"** : la section "Décisions d'architecture" (`/projects/[slug]`) n'était PAS gardée par `keyDecisions.length > 0` (contrairement à metrics/learnings qui l'étaient déjà) — Ndimbeul (keyDecisions vide) affichait un titre de section sans contenu. Corrigé.
+- Vérifié : metrics/learnings étaient déjà correctement masqués si vides — fausse alerte sur ce point précis, mais l'audit a fait trouver le vrai bug adjacent.
+
+Repris tel quel (nécessite une décision/input de LeM avant action) :
+- **Contradiction Olèle/Liggeyo toujours pas résolue** : la fiche `olele-systems` décrit un stack bespoke complet (JWT custom, RLS, repo privé) sans lien avec Liggeyo ; la fiche `liggeyo` affirme qu'Olèle Systems "est un espace LMS déployé... au même titre qu'un espace formateur" — ce qui suggère un tenant sur une plateforme partagée, pas un codebase séparé. Les deux ne peuvent pas être littéralement vrais en même temps sans précision. Question posée à LeM en conversation : Olèle tourne-t-il aujourd'hui techniquement SUR l'infra Liggeyo, ou reste-t-il un codebase bespoke séparé qui rend juste le même type de service qu'un espace formateur Liggeyo ?
+- **CTA "Book a call"** : recommandé par le persona client. Ne pas inventer de lien Calendly/Cal.com — à demander à LeM s'il en a un.
+- Backlog visuel/UX (bouton CV dans le Hero, allègement mobile des cartes projet, copy orientée bénéfice client) transmis à LeM sous forme de prompt Antigravity — pas dans le lane Claude Code.

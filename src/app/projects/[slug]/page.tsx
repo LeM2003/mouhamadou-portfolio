@@ -184,6 +184,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
       </ScrollReveal>
 
       {/* ── DÉCISIONS CLÉS ── */}
+      {project.caseStudy.keyDecisions.length > 0 && (
       <ScrollReveal>
         <section className="px-6 md:px-12 lg:px-20 py-16 max-w-6xl mx-auto w-full border-t border-[var(--hairline)]">
           <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-8 flex items-center gap-3">
@@ -210,6 +211,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </div>
         </section>
       </ScrollReveal>
+      )}
 
       {/* ── MÉTRIQUES ── */}
       {project.caseStudy.metrics.length > 0 && (

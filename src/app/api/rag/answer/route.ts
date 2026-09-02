@@ -15,9 +15,58 @@ import { corpus } from "@/lib/ragPlayground/corpus";
  * Sans clé, la route répond 501 et le playground reste utilisable en
  * mode pédagogique pur (chunking/embedding/retrieval visuels, sans réponse
  * générée).
+ *
+ * Rate limiting : best-effort, en mémoire (par IP + global). Suffisant
+ * pour un endpoint de démo à faible trafic, MAIS ne survit pas à un
+ * cold start et n'est pas partagé entre instances serverless — un
+ * attaquant distribué sur plusieurs régions/instances peut encore
+ * consommer le quota Groq plus vite que ce garde-fou ne le permet.
+ * Pour une vraie protection distribuée : Vercel KV / Upstash Redis
+ * (@upstash/ratelimit) — décision à prendre par LeM (nouveau service,
+ * clé, éventuel coût) avant d'y passer.
  */
 
 const GROQ_MODEL = process.env.GROQ_MODEL || "llama-3.1-8b-instant";
+
+// --- Rate limiting best-effort (en mémoire, par instance) ---
+const PER_IP_LIMIT = 8; // requêtes
+const PER_IP_WINDOW_MS = 5 * 60 * 1000; // 5 minutes
+const GLOBAL_LIMIT = 150; // requêtes
+const GLOBAL_WINDOW_MS = 60 * 60 * 1000; // 1 heure
+
+const ipHits = new Map<string, number[]>();
+let globalHits: number[] = [];
+
+function pruneOld(timestamps: number[], windowMs: number, now: number): number[] {
+  return timestamps.filter((t) => now - t < windowMs);
+}
+
+function isRateLimited(ip: string): { limited: boolean; retryAfterSec: number } {
+  const now = Date.now();
+
+  globalHits = pruneOld(globalHits, GLOBAL_WINDOW_MS, now);
+  if (globalHits.length >= GLOBAL_LIMIT) {
+    return { limited: true, retryAfterSec: 300 };
+  }
+
+  const hits = pruneOld(ipHits.get(ip) ?? [], PER_IP_WINDOW_MS, now);
+  if (hits.length >= PER_IP_LIMIT) {
+    const oldest = hits[0];
+    const retryAfterSec = Math.max(1, Math.ceil((PER_IP_WINDOW_MS - (now - oldest)) / 1000));
+    return { limited: true, retryAfterSec };
+  }
+
+  hits.push(now);
+  ipHits.set(ip, hits);
+  globalHits.push(now);
+  return { limited: false, retryAfterSec: 0 };
+}
+
+function getClientIp(req: NextRequest): string {
+  const forwarded = req.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+  return req.headers.get("x-real-ip") || "unknown";
+}
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.GROQ_API_KEY;
@@ -31,6 +80,15 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const ip = getClientIp(req);
+  const rl = isRateLimited(ip);
+  if (rl.limited) {
+    return NextResponse.json(
+      { error: "Trop de requêtes — réessaie dans quelques instants." },
+      { status: 429, headers: { "Retry-After": String(rl.retryAfterSec) } }
+    );
+  }
+
   let body: { query?: string; chunkIds?: string[] };
   try {
     body = await req.json();
@@ -38,8 +96,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Corps de requête invalide." }, { status: 400 });
   }
 
-  const query = (body.query ?? "").trim();
-  const chunkIds = Array.isArray(body.chunkIds) ? body.chunkIds : [];
+  const query = (body.query ?? "").trim().slice(0, 300);
+  const chunkIds = Array.isArray(body.chunkIds) ? body.chunkIds.slice(0, 5) : [];
 
   if (query.length < 2 || chunkIds.length === 0) {
     return NextResponse.json(
