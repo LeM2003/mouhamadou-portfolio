@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { MdMonogram } from "@/components/MdMonogram";
 import { projects } from "@/data/projects";
+import { JARGON_BENEFITS } from "@/lib/jargon";
 
 export const metadata: Metadata = {
   title: "Mouhamadou Diouf — AI Product Builder & Product Owner · Dakar",
@@ -31,16 +32,12 @@ const STATUS_BADGE = {
   label: "Disponible · missions freelance",
 };
 
-const JARGON_BENEFITS: Record<string, string> = {
-  "Next.js 16": "Vitesse extrême & SEO",
-  "Supabase": "Backend scalable & sûr",
-  "Groq": "Réponses IA < 500ms",
-  "Framer Motion": "Interactions fluides",
-  "GSAP": "Animations 60fps",
-  "PWA": "100% hors-ligne",
-  "Node.js": "Backend robuste",
-  "Tailwind v4": "Design System",
-};
+/**
+ * Lien Calendly ou Cal.com pour la réservation d'appels (15 min).
+ * TODO(LeM): Remplacer null par l'URL active (ex: "https://cal.com/lem2003/15min")
+ * tant qu'aucun lien n'est fourni, un placeholder TODO explicite et non-cliquable est affiché.
+ */
+const CALENDLY_URL: string | null = null;
 
 export default function Home() {
   return (
@@ -48,7 +45,7 @@ export default function Home() {
       <Nav />
 
       {/* ── 01 — Hero ───────────────────────────────────────────── */}
-      <section className="flex-1 relative px-6 md:px-12 lg:px-20 pt-16 md:pt-32 pb-24 max-w-6xl mx-auto w-full overflow-hidden">
+      <section className="flex-1 relative px-6 md:px-12 lg:px-20 pt-12 md:pt-20 pb-16 md:pb-24 max-w-6xl mx-auto w-full overflow-hidden">
         {/* Chiffre décoratif brutaliste */}
         <div
           aria-hidden
@@ -67,13 +64,13 @@ export default function Home() {
 
         {/* Badge disponibilité */}
         {STATUS_BADGE.available && (
-          <div className="relative mb-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)] border border-[var(--accent)] px-3 py-1.5">
+          <div className="relative mb-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-[var(--accent)] border border-[var(--accent)] px-3 py-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
             {STATUS_BADGE.label}
           </div>
         )}
 
-        <div className="relative font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-10 flex items-center gap-3">
+        <div className="relative font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-8 flex items-center gap-3">
           <span>01</span>
           <span className="w-8 h-px bg-[var(--hairline)]" />
           <span>Manifeste</span>
@@ -85,29 +82,31 @@ export default function Home() {
           pas un add-on marketing.
         </h1>
 
-        <div className="mt-20 grid grid-cols-12 gap-6 md:gap-12 max-w-5xl">
+        <div className="mt-10 md:mt-12 grid grid-cols-12 gap-6 md:gap-12 max-w-5xl">
           <div className="col-span-12 md:col-span-7">
             <p className="text-lg md:text-xl text-[var(--muted)] leading-relaxed">
               Product Owner @Auryntix & builder indépendant à Dakar. Je pilote des produits
               et les construis — de la roadmap au déploiement. Master Data Science/IA en cours.
               L&apos;IA est dans l&apos;architecture dès le départ, pas ajoutée pour cocher une case.
             </p>
-            <div className="mt-8 flex items-center gap-6">
+            {/* Liens secondaires recruteur/diaspora — visibles above the fold */}
+            <div className="mt-6 flex flex-wrap items-center gap-3 md:gap-4">
+              <Link
+                href="/collaboration"
+                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider px-3.5 py-2 border border-[var(--hairline)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+              >
+                <span className="w-1.5 h-1.5 bg-[var(--accent)]" />
+                <span>CV · Parcours</span>
+              </Link>
               <a
-                href="/cv.pdf"
+                href="https://www.linkedin.com/in/mouhamadoudiouf"
                 target="_blank"
-                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider hover:text-[var(--accent)] transition-colors"
+                rel="noreferrer"
+                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider px-3.5 py-2 border border-[var(--hairline)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
               >
                 <span className="w-1.5 h-1.5 bg-[var(--foreground)] group-hover:bg-[var(--accent)] transition-colors" />
-                Télécharger CV
-              </a>
-              <a
-                href="https://linkedin.com/in/lem2003"
-                target="_blank"
-                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider hover:text-[var(--accent)] transition-colors"
-              >
-                <span className="w-1.5 h-1.5 bg-[var(--foreground)] group-hover:bg-[var(--accent)] transition-colors" />
-                LinkedIn
+                <span>LinkedIn</span>
+                <span className="text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors">↗</span>
               </a>
             </div>
           </div>
@@ -206,13 +205,23 @@ export default function Home() {
                       const benefit = JARGON_BENEFITS[s];
                       return (
                         <div key={s} className="group/tag relative flex items-center">
-                          <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border border-[var(--hairline)] text-[var(--muted)] group-hover/tag:border-[var(--accent)] transition-colors cursor-help">
-                            {s}
+                          <span
+                            title={benefit ? `${s} — Bénéfice : ${benefit}` : s}
+                            className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border border-[var(--hairline)] text-[var(--muted)] group-hover/tag:border-[var(--accent)] group-hover/tag:text-[var(--foreground)] transition-colors cursor-help flex items-center gap-1.5"
+                          >
+                            <span>{s}</span>
+                            {benefit && (
+                              <span
+                                aria-hidden
+                                className="w-1 h-1 rounded-full bg-[var(--accent)] opacity-60 group-hover/tag:opacity-100 transition-opacity"
+                              />
+                            )}
                           </span>
                           {benefit && (
-                            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover/tag:opacity-100 pointer-events-none transition-opacity whitespace-nowrap bg-[var(--foreground)] text-[var(--background)] font-mono text-[9px] uppercase tracking-wider px-2 py-1 z-10">
-                              {benefit}
-                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-[var(--foreground)]" />
+                            <div className="pointer-events-none absolute bottom-full mb-2 right-0 md:left-1/2 md:-translate-x-1/2 opacity-0 group-hover/tag:opacity-100 transition-opacity z-20 whitespace-nowrap bg-[var(--foreground)] text-[var(--background)] font-mono text-[9px] uppercase tracking-wider px-2.5 py-1 shadow-sm">
+                              <span className="text-[var(--accent)] font-semibold mr-1">Bénéfice :</span>
+                              <span>{benefit}</span>
+                              <div className="hidden md:block absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-[var(--foreground)]" />
                             </div>
                           )}
                         </div>
@@ -359,13 +368,27 @@ export default function Home() {
                 <span>→</span>
               </Link>
               <div className="flex flex-col md:flex-row gap-4">
-                <a
-                  href="#"
-                  title="TODO: Ajouter lien Calendly"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-[var(--accent)] text-[var(--accent)] font-mono text-sm uppercase tracking-wider hover:bg-[var(--accent)] hover:text-[var(--background)] transition-colors"
-                >
-                  Réserver un appel (15 min)
-                </a>
+                {CALENDLY_URL ? (
+                  <a
+                    href={CALENDLY_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-[var(--accent)] text-[var(--accent)] font-mono text-sm uppercase tracking-wider hover:bg-[var(--accent)] hover:text-[var(--background)] transition-colors"
+                  >
+                    Réserver un appel (15 min)
+                  </a>
+                ) : (
+                  <div
+                    title="TODO : Lien Calendly / Cal.com à configurer par LeM"
+                    className="inline-flex items-center justify-center gap-2.5 px-6 py-4 border border-dashed border-[var(--hairline)] text-[var(--muted)] font-mono text-xs uppercase tracking-wider select-none"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--hairline)]" />
+                    <span>Réserver un appel (15 min)</span>
+                    <span className="text-[9px] px-1.5 py-0.5 border border-[var(--hairline)] text-[var(--muted)]">
+                      TODO
+                    </span>
+                  </div>
+                )}
                 <a
                   href="mailto:Mouhamadoud_Diouf@proton.me"
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-[var(--hairline)] font-mono text-sm uppercase tracking-wider hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"

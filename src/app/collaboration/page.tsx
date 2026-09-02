@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { PrintCvButton } from "@/components/PrintCvButton";
 import { projects } from "@/data/projects";
 import { experience, education, skills, flagshipProjectSlugs } from "@/data/profile";
+import { JARGON_BENEFITS } from "@/lib/jargon";
 
 export const metadata: Metadata = {
   title: "Collaboration — Mouhamadou Diouf",
@@ -211,6 +212,28 @@ export default function CollaborationPage() {
                 <p className="text-sm text-[var(--muted)] leading-relaxed line-clamp-3">
                   {p.context}
                 </p>
+                <div className="flex flex-wrap gap-1.5 mt-auto pt-2">
+                  {p.stack.map((s) => {
+                    const benefit = JARGON_BENEFITS[s];
+                    return (
+                      <div key={s} className="group/tag relative flex items-center">
+                        <span
+                          title={benefit ? `${s} — Bénéfice : ${benefit}` : s}
+                          className="font-mono text-[9px] uppercase tracking-wider px-2 py-0.5 border border-[var(--hairline)] text-[var(--muted)] group-hover/tag:border-[var(--accent)] group-hover/tag:text-[var(--foreground)] transition-colors flex items-center gap-1"
+                        >
+                          <span>{s}</span>
+                          {benefit && <span className="w-1 h-1 rounded-full bg-[var(--accent)] opacity-60" />}
+                        </span>
+                        {benefit && (
+                          <div className="pointer-events-none absolute bottom-full mb-1.5 left-0 opacity-0 group-hover/tag:opacity-100 transition-opacity z-20 whitespace-nowrap bg-[var(--foreground)] text-[var(--background)] font-mono text-[8px] uppercase tracking-wider px-2 py-1 shadow-sm">
+                            <span className="text-[var(--accent)] mr-1">Bénéfice :</span>
+                            <span>{benefit}</span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </Link>
             ))}
           </div>
