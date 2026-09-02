@@ -31,6 +31,17 @@ const STATUS_BADGE = {
   label: "Disponible · missions freelance",
 };
 
+const JARGON_BENEFITS: Record<string, string> = {
+  "Next.js 16": "Vitesse extrême & SEO",
+  "Supabase": "Backend scalable & sûr",
+  "Groq": "Réponses IA < 500ms",
+  "Framer Motion": "Interactions fluides",
+  "GSAP": "Animations 60fps",
+  "PWA": "100% hors-ligne",
+  "Node.js": "Backend robuste",
+  "Tailwind v4": "Design System",
+};
+
 export default function Home() {
   return (
     <main className="flex-1 flex flex-col">
@@ -81,6 +92,24 @@ export default function Home() {
               et les construis — de la roadmap au déploiement. Master Data Science/IA en cours.
               L&apos;IA est dans l&apos;architecture dès le départ, pas ajoutée pour cocher une case.
             </p>
+            <div className="mt-8 flex items-center gap-6">
+              <a
+                href="/cv.pdf"
+                target="_blank"
+                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider hover:text-[var(--accent)] transition-colors"
+              >
+                <span className="w-1.5 h-1.5 bg-[var(--foreground)] group-hover:bg-[var(--accent)] transition-colors" />
+                Télécharger CV
+              </a>
+              <a
+                href="https://linkedin.com/in/lem2003"
+                target="_blank"
+                className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider hover:text-[var(--accent)] transition-colors"
+              >
+                <span className="w-1.5 h-1.5 bg-[var(--foreground)] group-hover:bg-[var(--accent)] transition-colors" />
+                LinkedIn
+              </a>
+            </div>
           </div>
           <div className="col-span-12 md:col-span-5 flex flex-col gap-4 md:items-end">
             <Link
@@ -168,19 +197,27 @@ export default function Home() {
                   </div>
                   <div className="col-span-12 md:col-span-4 space-y-2 text-[var(--muted)]">
                     <div className="text-sm leading-relaxed">{p.context}</div>
-                    <div className="text-xs italic text-[var(--foreground)] opacity-70 leading-relaxed border-l-2 border-[var(--accent-soft)] pl-3">
+                    <div className="hidden md:block text-xs italic text-[var(--foreground)] opacity-70 leading-relaxed border-l-2 border-[var(--accent-soft)] pl-3">
                       Décision : {p.decision}
                     </div>
                   </div>
                   <div className="col-span-12 md:col-span-2 flex flex-wrap gap-1.5 self-end">
-                    {p.stack.map((s) => (
-                      <span
-                        key={s}
-                        className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border border-[var(--hairline)] text-[var(--muted)]"
-                      >
-                        {s}
-                      </span>
-                    ))}
+                    {p.stack.map((s) => {
+                      const benefit = JARGON_BENEFITS[s];
+                      return (
+                        <div key={s} className="group/tag relative flex items-center">
+                          <span className="font-mono text-[10px] uppercase tracking-wider px-2 py-1 border border-[var(--hairline)] text-[var(--muted)] group-hover/tag:border-[var(--accent)] transition-colors cursor-help">
+                            {s}
+                          </span>
+                          {benefit && (
+                            <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 opacity-0 group-hover/tag:opacity-100 pointer-events-none transition-opacity whitespace-nowrap bg-[var(--foreground)] text-[var(--background)] font-mono text-[9px] uppercase tracking-wider px-2 py-1 z-10">
+                              {benefit}
+                              <div className="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-[var(--foreground)]" />
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </Link>
               </ScrollReveal>
@@ -321,12 +358,21 @@ export default function Home() {
                 Voir ma carte
                 <span>→</span>
               </Link>
-              <a
-                href="mailto:Mouhamadoud_Diouf@proton.me"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-[var(--hairline)] font-mono text-sm uppercase tracking-wider hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
-              >
-                Email direct
-              </a>
+              <div className="flex flex-col md:flex-row gap-4">
+                <a
+                  href="#"
+                  title="TODO: Ajouter lien Calendly"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-[var(--accent)] text-[var(--accent)] font-mono text-sm uppercase tracking-wider hover:bg-[var(--accent)] hover:text-[var(--background)] transition-colors"
+                >
+                  Réserver un appel (15 min)
+                </a>
+                <a
+                  href="mailto:Mouhamadoud_Diouf@proton.me"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 border border-[var(--hairline)] font-mono text-sm uppercase tracking-wider hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                >
+                  Email direct
+                </a>
+              </div>
             </div>
           </div>
         </ScrollReveal>

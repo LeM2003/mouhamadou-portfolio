@@ -60,20 +60,20 @@ export const projects: Project[] = [
     slug: "olele-systems",
     num: "01",
     name: "Olèle Systems",
-    tag: "Plateforme LMS",
+    tag: "LMS · Plan Pro Liggeyo",
     year: "2025 – 2026",
     status: "production",
-    context: "Formations vidéo + quiz certifiants pour la diaspora",
-    decision: "Next.js 16 RSC + Supabase RLS pour scaler à coût quasi-nul",
+    context: "Formations vidéo + quiz certifiants pour la diaspora — espace Pro sur la plateforme Liggeyo",
+    decision: "Plan Pro Liggeyo avec domaine personnalisé, plutôt qu'un rebuild sur-mesure séparé",
     cursorText: "Supabase RLS · JWT",
     stack: ["Next.js 16", "Supabase", "Vercel"],
-    repoUrl: null, // repo privé client
+    repoUrl: null, // tourne sur la plateforme Liggeyo, pas de repo dédié
     liveUrl: "https://olelesystems.company",
     caseStudy: {
       problem:
-        "Un client souhaitait une plateforme LMS premium pour vendre ses formations e-commerce à la diaspora africaine. Les solutions du marché (Teachable, Thinkific) facturent 99-299$/mois et imposent leur branding. Pour un MVP rentable, il fallait une stack sur-mesure scalable à coût quasi-nul.",
+        "Olèle Systems, partenaire de Mouhamadou, voulait vendre ses formations en ligne à la diaspora africaine sans dépendre des plateformes américaines (Teachable, Thinkific) qui facturent 99-299$/mois et imposent leur branding.",
       solution:
-        "Architecture Next.js 16 App Router avec React Server Components pour le rendu rapide des leçons. Supabase Postgres pour la base de données avec Row Level Security stricte. JWT custom + cookies httpOnly pour l'authentification (jose + bcryptjs). Quiz certifiants avec génération HTML imprimable des diplômes. Flow paiement WhatsApp + Wave/Orange Money manuel (étape 1), Stripe/Wave intégré en V2. Sentry pour le monitoring production.",
+        "Olèle Systems utilise le plan Pro de Liggeyo, la plateforme SaaS LMS de Mouhamadou : domaine personnalisé (olelesystems.company), formations vidéo et quiz certifiants avec diplômes imprimables, paiements Wave/Orange Money. L'architecture ci-dessous est celle de la plateforme Liggeyo elle-même — Next.js 16 App Router / RSC, Supabase Postgres avec Row Level Security stricte, JWT custom + cookies httpOnly, monitoring Sentry — dont Olèle bénéficie via son plan Pro, sans repartir d'un développement sur-mesure séparé.",
       fullStack: [
         "Next.js 16 (App Router · RSC)",
         "React 19 · TypeScript",
@@ -89,7 +89,7 @@ export const projects: Project[] = [
         {
           title: "JWT custom plutôt que Supabase Auth",
           rationale:
-            "Contrôle total du flow (token rotation, cookies httpOnly + SameSite Strict, expiration personnalisée). Supabase Auth coûte des MAU et impose son UI — pas adapté au client.",
+            "Contrôle total du flow (token rotation, cookies httpOnly + SameSite Strict, expiration personnalisée). Supabase Auth coûte des MAU et impose son UI — pas adapté à une plateforme multi-tenant comme Liggeyo.",
         },
         {
           title: "RLS Postgres plutôt que middleware Node",
@@ -350,7 +350,7 @@ export const projects: Project[] = [
       problem:
         "Les formateurs et créateurs de contenu francophones qui veulent vendre des formations en ligne dépendent de plateformes américaines (Kajabi, Teachable) facturées en dollars, avec leur branding imposé et des moyens de paiement inadaptés au marché africain — pas de Wave, pas d'Orange Money.",
       solution:
-        "Liggeyo se compose de deux briques : un Cockpit (la landing page publique, liggeyo.com) et un LMS marque blanche — l'espace réservé au formateur pour lancer sa propre école en ligne (domaine personnalisé, logo, couleurs) en 24h, uploader son contenu (vidéos, PDF, quiz), délivrer des certificats, suivre ses apprenants et encaisser via Wave/Orange Money/Free Money/MTN, 0% de commission. Olèle Systems (olelesystems.company) est un espace LMS déployé pour ce client, au même titre qu'un espace formateur.",
+        "Liggeyo se compose de deux briques : un Cockpit (la landing page publique, liggeyo.com) et un LMS marque blanche — l'espace réservé au formateur pour lancer sa propre école en ligne (domaine personnalisé, logo, couleurs) en 24h, uploader son contenu (vidéos, PDF, quiz), délivrer des certificats, suivre ses apprenants et encaisser via Wave/Orange Money/Free Money/MTN, 0% de commission. Olèle Systems (olelesystems.company) utilise le plan Pro de Liggeyo : domaine personnalisé et espace LMS dédié, au même titre que n'importe quel formateur sur ce plan.",
       fullStack: [
         "Cockpit public (landing, acquisition)",
         "LMS multi-tenant marque blanche (espace formateur : contenu, certificats, apprenants)",
