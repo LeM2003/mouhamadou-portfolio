@@ -61,7 +61,7 @@ export default function Home() {
             Projets
           </Link>
           <Link
-            href="/now"
+            href="#projects"
             className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
           >
             Maintenant
@@ -118,7 +118,7 @@ export default function Home() {
               </span>
             </Link>
             <Link
-              href="/card"
+              href="mailto:Mouhamadoud_Diouf@proton.me?subject=Projet%20web%20ou%20IA"
               className="group inline-flex items-center gap-3 text-base font-medium hover:text-[var(--accent)] transition-colors"
             >
               <span className="font-mono text-xs text-[var(--muted)]">→</span>
