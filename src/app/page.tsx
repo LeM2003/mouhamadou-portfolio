@@ -3,16 +3,26 @@ import Link from "next/link";
 const projects = [
   {
     num: "01",
+    name: "Liggeyo",
+    tag: "SaaS de formation",
+    context: "Plateforme pour lancer et gérer un espace de formation en ligne",
+    decision: "Expérience simple, paiements adaptés et déploiement rapide pour les formateurs",
+    stack: ["Next.js 16", "Supabase", "Vercel"],
+    year: "2025 – 2026",
+    href: "https://www.liggeyo.com/",
+  },
+  {
+    num: "02",
     name: "Olèle Systems",
     tag: "Plateforme LMS",
     context: "Formations vidéo + quiz certifiants pour la diaspora",
     decision: "Next.js 16 RSC + Supabase RLS pour scaler à coût quasi-nul",
     stack: ["Next.js 16", "Supabase", "Vercel"],
     year: "2025 – 2026",
-    href: "https://github.com/LeM2003/olele-systems",
+    href: "https://olelesystems.com/",
   },
   {
-    num: "02",
+    num: "03",
     name: "Personal OS V2",
     tag: "Dashboard de vie",
     context: "Outil personnel — école, finances, tâches, assistant IA",
@@ -22,7 +32,7 @@ const projects = [
     href: "https://github.com/LeM2003/personal-os-v2",
   },
   {
-    num: "03",
+    num: "04",
     name: "MuslimApp",
     tag: "Application communautaire",
     context: "PWA Coran + dhikr, gratuite, offline-first",
@@ -32,7 +42,7 @@ const projects = [
     href: "https://github.com/LeM2003/MuslimApp",
   },
   {
-    num: "04",
+    num: "05",
     name: "ImportManager SN",
     tag: "Gestion d'import",
     context: "Outil métier pour entreprises sénégalaises d'import",
@@ -75,7 +85,7 @@ export default function Home() {
             GitHub
           </a>
           <a
-            href="https://www.linkedin.com/in/mouhamadou-diouf"
+            href="https://www.linkedin.com/in/mouhamadoudiouf/"
             target="_blank"
             rel="noreferrer"
             className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors font-mono"
