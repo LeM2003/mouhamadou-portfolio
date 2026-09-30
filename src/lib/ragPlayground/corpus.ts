@@ -41,8 +41,8 @@ export const corpus: Chunk[] = [
   },
   {
     id: "olele-2",
-    text: "Architecture Olèle : Supabase Postgres avec Row Level Security stricte, JWT custom + cookies httpOnly, validation Zod côté serveur.",
-    source: "Olèle Systems · sécurité",
+    text: "Architecture Liggeyo (dont bénéficie l'espace Olèle) : Supabase Postgres avec Row Level Security stricte, JWT custom + cookies httpOnly, validation Zod côté serveur.",
+    source: "Liggeyo · sécurité",
     coords: { x: 78, y: 55 },
     topics: ["supabase", "postgres", "rls", "jwt", "auth", "securite"],
   },

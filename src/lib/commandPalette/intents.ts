@@ -15,6 +15,7 @@
  */
 
 export type ProjectSlug =
+  | "liggeyo"
   | "olele-systems"
   | "personal-os-v2"
   | "muslim-app"
@@ -44,7 +45,7 @@ export const intents: Intent[] = [
     keywords: ["react", "next", "nextjs", "next.js", "ssr", "rsc", "frontend", "front-end", "front"],
     category: "tech",
     actions: [
-      { kind: "project", slug: "olele-systems" },
+      { kind: "project", slug: "liggeyo" },
       { kind: "project", slug: "personal-os-v2" },
     ],
     response: () =>
@@ -55,11 +56,11 @@ export const intents: Intent[] = [
     keywords: ["supabase", "postgres", "postgresql", "db", "database", "sql", "rls", "backend"],
     category: "tech",
     actions: [
-      { kind: "project", slug: "olele-systems" },
+      { kind: "project", slug: "liggeyo" },
       { kind: "project", slug: "personal-os-v2" },
     ],
     response: () =>
-      "Supabase + Postgres RLS comme backend par défaut. Olèle Systems audité P0 sécu (JWT custom, headers HTTP, validation Zod). Personal OS V2 en migration localStorage → Supabase avec sync Realtime.",
+      "Supabase + Postgres RLS comme backend par défaut. Liggeyo : JWT custom, validation Zod, RLS Postgres. Personal OS V2 en migration localStorage → Supabase avec sync Realtime.",
   },
   {
     id: "ai-llm",
@@ -158,11 +159,11 @@ export const intents: Intent[] = [
     keywords: ["e-commerce", "ecommerce", "shopify", "stripe", "wave", "paiement", "boutique", "vente"],
     category: "tech",
     actions: [
-      { kind: "project", slug: "olele-systems" },
+      { kind: "project", slug: "liggeyo" },
       { kind: "project", slug: "import-manager-sn" },
     ],
     response: () =>
-      "Tunnel paiement adapté contexte africain : Wave, Orange Money, Free Money + Stripe pour international. Olèle Systems gère le flow paiement → certification automatique.",
+      "Tunnel paiement adapté contexte africain : Wave, Orange Money, Free Money + Stripe pour international. Sur Liggeyo, le formateur encaisse via mobile money et délivre ses certificats.",
   },
 ];
 
@@ -193,11 +194,17 @@ export const projectMeta: Record<
   ProjectSlug,
   { name: string; tag: string; cursorText: string; href: string }
 > = {
+  liggeyo: {
+    name: "Liggeyo",
+    tag: "SaaS de formation",
+    cursorText: "Supabase RLS · JWT",
+    href: "https://www.liggeyo.com/",
+  },
   "olele-systems": {
     name: "Olèle Systems",
-    tag: "Plateforme LMS",
-    cursorText: "Supabase RLS · JWT",
-    href: "https://github.com/LeM2003/olele-systems",
+    tag: "Site vitrine · Collaboration",
+    cursorText: "Site vitrine",
+    href: "https://olelesystems.com/",
   },
   "personal-os-v2": {
     name: "Personal OS V2",

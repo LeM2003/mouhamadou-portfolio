@@ -57,35 +57,39 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "olele-systems",
+    slug: "liggeyo",
     num: "01",
-    name: "Olèle Systems",
-    tag: "LMS · Plan Pro Liggeyo",
+    name: "Liggeyo",
+    tag: "SaaS de formation",
     year: "2025 – 2026",
     status: "production",
-    context: "Formations vidéo + quiz certifiants pour la diaspora — espace Pro sur la plateforme Liggeyo",
-    decision: "Plan Pro Liggeyo avec domaine personnalisé, plutôt qu'un rebuild sur-mesure séparé",
-    cursorText: "Supabase RLS · JWT",
+    context: "Plateforme pour lancer et gérer un espace de formation en ligne — client : Olèle Systems (olelesystems.company)",
+    decision: "Expérience simple, paiements adaptés et déploiement rapide pour les formateurs",
+    cursorText: "Marque blanche · Mobile Money",
     stack: ["Next.js 16", "Supabase", "Vercel"],
-    repoUrl: null, // tourne sur la plateforme Liggeyo, pas de repo dédié
-    liveUrl: "https://olelesystems.company",
+    repoUrl: null,
+    liveUrl: "https://www.liggeyo.com/",
     caseStudy: {
       problem:
-        "Olèle Systems, partenaire de Mouhamadou, voulait vendre ses formations en ligne à la diaspora africaine sans dépendre des plateformes américaines (Teachable, Thinkific) qui facturent 99-299$/mois et imposent leur branding.",
+        "Les formateurs et créateurs de contenu francophones qui veulent vendre des formations en ligne dépendent de plateformes américaines (Kajabi, Teachable) facturées en dollars, avec leur branding imposé et des moyens de paiement inadaptés au marché africain — pas de Wave, pas d'Orange Money.",
       solution:
-        "Olèle Systems utilise le plan Pro de Liggeyo, la plateforme SaaS LMS de Mouhamadou : domaine personnalisé (olelesystems.company), formations vidéo et quiz certifiants avec diplômes imprimables, paiements Wave/Orange Money. L'architecture ci-dessous est celle de la plateforme Liggeyo elle-même — Next.js 16 App Router / RSC, Supabase Postgres avec Row Level Security stricte, JWT custom + cookies httpOnly, monitoring Sentry — dont Olèle bénéficie via son plan Pro, sans repartir d'un développement sur-mesure séparé.",
+        "Liggeyo se compose de deux briques : un Cockpit (la landing page publique, liggeyo.com) et un LMS marque blanche — l'espace réservé au formateur pour lancer sa propre école en ligne (domaine personnalisé, logo, couleurs) en 24h, uploader son contenu (vidéos, PDF, quiz), délivrer des certificats, suivre ses apprenants et encaisser via Wave et Orange Money, 0% de commission Liggeyo. Olèle Systems (olelesystems.company) utilise le plan Pro de Liggeyo : domaine personnalisé et espace LMS dédié, au même titre que n'importe quel formateur sur ce plan.",
       fullStack: [
-        "Next.js 16 (App Router · RSC)",
-        "React 19 · TypeScript",
+        "Next.js 16 (App Router · RSC) · React 19 · TypeScript",
         "Tailwind v4 · shadcn/ui",
-        "Supabase (Postgres + Auth + Realtime)",
-        "Row Level Security (RLS) stricte",
-        "JWT custom (jose + bcryptjs)",
-        "Validation Zod côté serveur",
-        "Sentry monitoring",
-        "Vercel deployment",
+        "Supabase (Postgres + Row Level Security)",
+        "JWT custom (jose + bcryptjs) · validation Zod",
+        "Sentry · Vercel",
+        "Cockpit public (landing, acquisition)",
+        "LMS multi-tenant marque blanche (espace formateur : contenu, certificats, apprenants)",
+        "Paiements Wave / Orange Money",
       ],
       keyDecisions: [
+        {
+          title: "Paiements mobiles locaux plutôt que Stripe/PayPal",
+          rationale:
+            "Le marché cible utilise Wave et Orange Money au quotidien, pas la carte bancaire — les rails de paiement occidentaux auraient exclu la majorité des clients visés.",
+        },
         {
           title: "JWT custom plutôt que Supabase Auth",
           rationale:
@@ -94,7 +98,7 @@ export const projects: Project[] = [
         {
           title: "RLS Postgres plutôt que middleware Node",
           rationale:
-            "La sécurité au niveau base = aucune fuite possible même si l'API a un bug. Audité P0 sécurité avant mise en prod.",
+            "La sécurité appliquée au niveau de la base limite le risque de fuite entre espaces formateurs, même si une route API contient un bug.",
         },
         {
           title: "Certificats HTML imprimables au lieu de PDF",
@@ -103,21 +107,41 @@ export const projects: Project[] = [
         },
       ],
       metrics: [
-        { label: "Audit sécurité", value: "P0 validé" },
-        { label: "Monitoring", value: "Sentry actif 24/7" },
-        { label: "Clients", value: "Clients réels en production" },
-        { label: "Backup", value: "Auto-backup quotidien" },
+        { label: "Activation client", value: "24h" },
+        { label: "Commission plateforme", value: "0%" },
       ],
       learnings: [
-        "Le pattern RSC + Supabase RLS est imbattable en coût/perf pour un LMS solo.",
-        "Auditer P0 sécurité AVANT la mise en prod évite 90% des post-mortems.",
-        "Le client préfère un MVP qui marche en 2 mois à une V1 parfaite en 6 mois.",
+        "Le pattern RSC + Supabase RLS est très efficace en coût/perf pour un LMS construit en solo.",
       ],
     },
   },
   {
-    slug: "personal-os-v2",
+    slug: "olele-systems",
     num: "02",
+    name: "Olèle Systems",
+    tag: "Site vitrine · Collaboration",
+    year: "2025",
+    status: "production",
+    context: "Refonte du site d'Olèle Systems, formation et accompagnement e-commerce",
+    decision: "Présenter clairement formations, coaching et résultats, et orienter vers le contact",
+    cursorText: "Site vitrine · Collaboration",
+    stack: ["Site vitrine", "Vercel"],
+    repoUrl: null,
+    liveUrl: "https://olelesystems.com/",
+    caseStudy: {
+      problem:
+        "Olèle Systems, partenaire de Mouhamadou, propose des formations et un accompagnement pour entrepreneurs digitaux (e-commerce, web, IA, marketing). Son site public devait présenter clairement cette offre.",
+      solution:
+        "Refonte du site vitrine olelesystems.com, réalisée en collaboration : présentation du profil, des formations, du coaching et des résultats, avec un accès direct au contact. Les formations en ligne d'Olèle sont, elles, hébergées sur un espace Liggeyo (olelesystems.company).",
+      fullStack: ["Site vitrine", "Vercel"],
+      keyDecisions: [],
+      metrics: [],
+      learnings: [],
+    },
+  },
+  {
+    slug: "personal-os-v2",
+    num: "03",
     name: "Personal OS V2",
     tag: "Dashboard de vie",
     year: "2026 — en cours",
@@ -176,7 +200,7 @@ export const projects: Project[] = [
   },
   {
     slug: "muslim-app",
-    num: "03",
+    num: "04",
     name: "MuslimApp",
     tag: "Application communautaire",
     year: "2026",
@@ -231,7 +255,7 @@ export const projects: Project[] = [
   },
   {
     slug: "import-manager-sn",
-    num: "04",
+    num: "05",
     name: "ImportManager SN",
     tag: "Gestion d'import",
     year: "2025 – 2026",
@@ -278,7 +302,7 @@ export const projects: Project[] = [
   },
   {
     slug: "auryntix",
-    num: "05",
+    num: "06",
     name: "Auryntix",
     tag: "Agence IA & Web",
     year: "2026 — en cours",
@@ -331,43 +355,6 @@ export const projects: Project[] = [
         "Enregistrer ScrollTrigger une seule fois dans un module partagé évite les conflits de plugins.",
         "Une agence doit manger sa propre cuisine : si tu vends du web premium, ton site doit être le meilleur exemple de ce que tu fais.",
       ],
-    },
-  },
-  {
-    slug: "liggeyo",
-    num: "06",
-    name: "Liggeyo",
-    tag: "SaaS LMS marque blanche",
-    year: "2026 — en cours",
-    status: "active",
-    context: "Lancer sa propre école en ligne marque blanche en 24h, pour l'Afrique francophone",
-    decision: "Paiements mobiles locaux (Wave, Orange Money, Free Money, MTN) et 0% commission plutôt que les rails de paiement occidentaux",
-    cursorText: "Marque blanche · Mobile Money",
-    stack: ["Cockpit (landing marketing)", "LMS marque blanche multi-tenant", "Wave / Orange Money"],
-    repoUrl: null,
-    liveUrl: "https://liggeyo.com",
-    caseStudy: {
-      problem:
-        "Les formateurs et créateurs de contenu francophones qui veulent vendre des formations en ligne dépendent de plateformes américaines (Kajabi, Teachable) facturées en dollars, avec leur branding imposé et des moyens de paiement inadaptés au marché africain — pas de Wave, pas d'Orange Money.",
-      solution:
-        "Liggeyo se compose de deux briques : un Cockpit (la landing page publique, liggeyo.com) et un LMS marque blanche — l'espace réservé au formateur pour lancer sa propre école en ligne (domaine personnalisé, logo, couleurs) en 24h, uploader son contenu (vidéos, PDF, quiz), délivrer des certificats, suivre ses apprenants et encaisser via Wave/Orange Money/Free Money/MTN, 0% de commission. Olèle Systems (olelesystems.company) utilise le plan Pro de Liggeyo : domaine personnalisé et espace LMS dédié, au même titre que n'importe quel formateur sur ce plan.",
-      fullStack: [
-        "Cockpit public (landing, acquisition)",
-        "LMS multi-tenant marque blanche (espace formateur : contenu, certificats, apprenants)",
-        "Paiements Wave / Orange Money / Free Money / MTN",
-      ],
-      keyDecisions: [
-        {
-          title: "Paiements mobiles locaux plutôt que Stripe/PayPal",
-          rationale:
-            "Le marché cible utilise Wave et Orange Money au quotidien, pas la carte bancaire — les rails de paiement occidentaux auraient exclu la majorité des clients visés.",
-        },
-      ],
-      metrics: [
-        { label: "Activation client", value: "24h" },
-        { label: "Commission plateforme", value: "0%" },
-      ],
-      learnings: [],
     },
   },
   {

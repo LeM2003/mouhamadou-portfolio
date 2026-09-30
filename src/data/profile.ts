@@ -99,7 +99,7 @@ export const skills: SkillGroup[] = [
 
 /** Projets vitrine repris sur /collaboration — filtre sur src/data/projects.ts, pas de duplication de contenu. */
 export const flagshipProjectSlugs: ProjectSlug[] = [
-  "olele-systems",
-  "personal-os-v2",
+  "liggeyo",
   "auryntix",
+  "personal-os-v2",
 ];

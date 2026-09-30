@@ -24,18 +24,33 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Mouhamadou Diouf — AI Product Builder",
+  metadataBase: new URL("https://mouhamadou-portfolio.vercel.app"),
+  title: "Mouhamadou Diouf — Tech-first Product Owner & AI Product Builder",
   description:
-    "Je construis des produits web utiles pour l'Afrique et au-delà, avec l'IA pensée dès la conception. Master Data Science/IA · Dakar 🇸🇳",
+    "Mouhamadou Diouf construit des produits SaaS et web à Dakar, à l’intersection du produit, de la technologie et de l’intelligence artificielle.",
+  openGraph: {
+    title: "Mouhamadou Diouf — Tech-first Product Owner & AI Product Builder",
+    description:
+      "Produits SaaS, applications web et expériences IA conçus depuis Dakar.",
+    url: "https://mouhamadou-portfolio.vercel.app",
+    siteName: "Mouhamadou Diouf",
+    locale: "fr_FR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mouhamadou Diouf — Tech-first Product Owner & AI Product Builder",
+    description:
+      "Produits SaaS, applications web et expériences IA conçus depuis Dakar.",
+  },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html
+    <html 
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >

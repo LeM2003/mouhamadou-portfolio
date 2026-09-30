@@ -1,5 +1,13 @@
 # CONTEXT.md — Dossier de passation
 
+## Mise à jour 2026-09-30 — fusion avec `main` (version en ligne)
+
+- `main` (page unique en ligne) a été fusionnée dans cette branche : métadonnées SEO du layout conservées, lien LinkedIn `/in/mouhamadoudiouf/`, redirections retirées sauf `/projects` → `/#projects` (pas de page index).
+- Liggeyo = projet 01, lien public https://www.liggeyo.com/ ; stack vérifiée dans le dépôt privé `liggeyo-lms` (Next.js 16, TS, Supabase, Tailwind, Sentry, Vercel). Les décisions techniques (JWT custom, RLS, certificats HTML) sont rattachées à Liggeyo, pas à Olèle.
+- Olèle Systems = deux mentions distinctes, validées par LeM : client Liggeyo (olelesystems.company, cité dans la fiche Liggeyo) et fiche 02 « Site vitrine · Collaboration » (refonte de olelesystems.com).
+- Retirés faute de preuve publique : « audité P0 », « clients réels en production », Free Money / MTN (le site Liggeyo n'affiche que Wave & Orange Money).
+- `flagshipProjectSlugs` : liggeyo, auryntix, personal-os-v2.
+
 ## Où on en est
 
 - Portfolio v3.0 "éditorial" en production (mouhamadou-portfolio.vercel.app), branche `feat/phase1-living-portfolio`. 3 commits locaux prêts à pousser (`3230252`, `2af1812`, `05411db`, `<commit du jour>`) — push bloqué depuis ce shell (pas de credentials git), à faire manuellement par LeM.
