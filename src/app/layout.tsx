@@ -26,11 +26,11 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
+  title: "Mouhamadou Diouf — AI Product Builder · Produits web, data & IA · Dakar",
   description:
-    "Mouhamadou Diouf, développeur full stack à Dakar : sites web et applications, tableaux de bord et automatisations IA pour entrepreneurs et PME. AI Product Builder & Product Owner chez Auryntix.",
+    "Mouhamadou Diouf, AI Product Builder à Dakar : je conçois et livre des produits web et IA — sites, applications, tableaux de bord, automatisations — pour entrepreneurs et PME. Product Owner chez Auryntix, créateur de Liggeyo.",
   openGraph: {
-    title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
+    title: "Mouhamadou Diouf — AI Product Builder · Produits web, data & IA · Dakar",
     description:
       "Sites web, applications, tableaux de bord et automatisations IA conçus depuis Dakar.",
     url: SITE_URL,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
+    title: "Mouhamadou Diouf — AI Product Builder · Produits web, data & IA · Dakar",
     description:
       "Sites web, applications, tableaux de bord et automatisations IA conçus depuis Dakar.",
   },

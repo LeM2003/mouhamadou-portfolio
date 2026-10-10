@@ -4,7 +4,7 @@ import { Nav } from "@/components/Nav";
 export const metadata: Metadata = {
   title: "Services — Mouhamadou Diouf",
   description:
-    "Landing pages, sites vitrine, MVP SaaS, analyse de données & Power BI, intégration IA — estimation personnalisée après étude de votre besoin. Mouhamadou Diouf, développeur full stack à Dakar.",
+    "Landing pages, sites vitrine, MVP SaaS, analyse de données & Power BI, intégration IA — estimation personnalisée après étude de votre besoin. Mouhamadou Diouf, AI Product Builder à Dakar.",
   alternates: { canonical: "/services" },
 };
 

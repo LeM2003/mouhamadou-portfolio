@@ -95,7 +95,7 @@ export default function Home() {
       {/* ── 01 — Premier écran ─────────────────────────────── */}
       <section className="px-6 md:px-12 lg:px-20 pt-12 md:pt-20 pb-16 max-w-6xl mx-auto w-full">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-10">
-          Développeur full stack · AI Product Builder — Dakar, Sénégal · Collaboration à distance
+          AI Product Builder · Product Owner — Dakar, Sénégal · Collaboration à distance
         </p>
 
         <div className="md:grid md:grid-cols-[1fr_auto] md:gap-16 md:items-start">

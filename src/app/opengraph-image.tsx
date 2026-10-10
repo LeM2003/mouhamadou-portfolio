@@ -4,7 +4,7 @@ import { join } from "node:path";
 
 // Carte d'aperçu (LinkedIn, WhatsApp, X…) quand on partage le lien du site.
 // Couleurs = tokens du site : papier #F5F5F1, encre #111, accent cobalt #2146E8.
-export const alt = "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar";
+export const alt = "Mouhamadou Diouf — AI Product Builder · Produits web, data & IA · Dakar";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,7 +33,7 @@ export default async function OpengraphImage() {
             Mouhamadou Diouf
           </div>
           <div style={{ fontSize: 34, color: "#333333", marginTop: 24, lineHeight: 1.3 }}>
-            Développeur full stack — web, data & IA
+            AI Product Builder — produits web, data & IA
           </div>
           <div style={{ fontSize: 28, color: "#2146E8", marginTop: 32 }}>
             Dakar · Créateur de Liggeyo
