@@ -27,6 +27,8 @@ export const identite: Identite = {
   description:
     "Développeur full stack à Dakar : sites web et applications, tableaux de bord et automatisations IA pour entrepreneurs et PME. Product Owner chez Auryntix, créateur de Liggeyo.",
   email: "Mouhamadoud_Diouf@proton.me",
+  // Photo carrée 600 px (public/). Google l’utilise pour le panneau de résultats.
+  image: `${SITE_URL}/mouhamadou-diouf.jpg`,
   sameAs: [
     "https://www.linkedin.com/in/mouhamadoudiouf/",
     "https://github.com/LeM2003",
