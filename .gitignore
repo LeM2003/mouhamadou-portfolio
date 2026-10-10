@@ -42,3 +42,6 @@ next-env.d.ts
 
 # worktrees (superpowers)
 .worktrees
+
+# captures de contrôle responsive (générées localement, non versionnées)
+/screenshots

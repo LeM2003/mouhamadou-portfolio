@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Collaboration — Mouhamadou Diouf",
   description:
     "Parcours, stack et projets clés de Mouhamadou Diouf — Product Owner & builder à Dakar, ouvert à une collaboration long terme ou un CDI remote.",
+  alternates: { canonical: "/collaboration" },
 };
 
 const CONTACT = {

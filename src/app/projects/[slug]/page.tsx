@@ -30,6 +30,7 @@ export async function generateMetadata({
   return {
     title: `${project.name} — Mouhamadou Diouf`,
     description: project.context,
+    alternates: { canonical: `/projects/${project.slug}` },
   };
 }
 

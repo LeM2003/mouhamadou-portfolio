@@ -7,8 +7,8 @@
  */
 export const JARGON_BENEFITS: Record<string, string> = {
   // Stacks Olèle Systems & Liggeyo
-  "Next.js 16": "Vitesse extrême & bon SEO",
-  "Supabase": "Sécurité niveau bancaire & scalable",
+  "Next.js 16": "Rendu serveur, SEO de base, déploiement facile",
+  "Supabase": "Auth, base Postgres & droits d'accès par ligne",
   "Vercel": "Hébergement haute disponibilité",
   "Cockpit (landing marketing)": "Acquisition & conversion directe",
   "LMS marque blanche multi-tenant": "Votre marque, zéro commission",

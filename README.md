@@ -1,7 +1,7 @@
 # Mouhamadou Diouf · Portfolio
 
 > **AI Product Builder · Master Data Science / IA · 🇸🇳 Dakar**
-> Mon portfolio personnel — *Je construis des produits web où l'IA est au cœur, pas un add-on.*
+> Portfolio personnel — *Développeur full stack : sites web, data & IA pour entrepreneurs et PME.*
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-000?style=flat&logo=nextdotjs&logoColor=white)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-20232A?style=flat&logo=react&logoColor=61DAFB)](https://react.dev)
@@ -13,7 +13,7 @@
 
 ## 🎯 Le projet
 
-Ce portfolio est **mon outil de positionnement principal** comme AI Product Builder à Dakar. Pensé comme un *produit*, pas une page CV — chaque section est une preuve : architecture, animation, performance, accessibilité.
+Ce portfolio est **mon outil de positionnement principal** comme développeur full stack et AI Product Builder à Dakar. Pensé comme un *produit*, pas une page CV — chaque section est une preuve : architecture, animation, performance, accessibilité.
 
 **Cible** : recruteurs tech internationaux, fondateurs de startups, clients freelance EU/US/Afrique francophone.
 
@@ -24,14 +24,18 @@ Ce portfolio est **mon outil de positionnement principal** comme AI Product Buil
 ```
 src/
 ├── app/
-│   ├── layout.tsx        Layout global + ScrollProgress
-│   ├── page.tsx          Landing principale (hero · proof · projets · contact)
-│   └── globals.css       Variables design + base Tailwind
-└── components/
-    ├── AnimatedHeadline.tsx  Animation mot-à-mot du hero
-    ├── ScrollProgress.tsx    Barre de progression scroll
-    ├── FadeIn.tsx            Wrapper d'apparition au scroll
-    └── ProofMetric.tsx       Carte de preuve sociale (chiffres, badges)
+│   ├── layout.tsx          Layout global + métadonnées
+│   ├── page.tsx            Landing principale (hero · projets · services · contact)
+│   ├── projects/[slug]/    Fiches projets
+│   ├── services/           Offres & tarifs freelance
+│   ├── collaboration/      Parcours CV-like
+│   ├── now/                En ce moment
+│   ├── card/               Carte de visite digitale (QR + vCard)
+│   ├── lab/rag/            RAG Playground (démo pédagogique)
+│   ├── robots.ts           robots.txt
+│   ├── sitemap.ts          sitemap.xml
+│   └── globals.css         Variables design + base Tailwind
+└── components/             Nav, ScrollReveal, CommandPalette, Loader…
 ```
 
 **Documents de pilotage** (versionnés mais non publiés) :
@@ -53,11 +57,11 @@ Ouvre [http://localhost:3000](http://localhost:3000).
 
 - [x] v1 — Landing éditoriale premium
 - [x] v2 — Polish design + crédibilité + CV intégré
-- [ ] v3 — Pages détail projets (`/projects/[slug]` pour Olèle, Personal OS, MuslimApp)
-- [ ] v4 — Page `/services` (offres freelance) + `/collaboration` (CV-like)
-- [ ] v5 — Carte de contact digitale + QR code (vCard)
+- [x] v3 — Pages détail projets (`/projects/[slug]` : Olèle, Personal OS, Liggeyo…)
+- [x] v4 — Page `/services` (offres freelance) + `/collaboration` (CV-like)
+- [x] v5 — Carte de contact digitale + QR code (vCard)
 - [ ] v6 — Blog "Build in public" + apprentissages Master IA
-- [ ] **Déploiement** sur [mouhamadou-diouf.com](https://mouhamadou-diouf.com) *(à venir)*
+- [x] **Déploiement** sur [mouhamadou-portfolio.vercel.app](https://mouhamadou-portfolio.vercel.app)
 
 ## 🎨 Choix de design
 
@@ -80,7 +84,7 @@ Ouvre [http://localhost:3000](http://localhost:3000).
 Si tu veux échanger sur un projet, une mission freelance, ou une collaboration long terme :
 
 - 📧 **Mouhamadoud_Diouf@proton.me**
-- 💼 [LinkedIn](https://www.linkedin.com/in/mouhamadou-diouf)
+- 💼 [LinkedIn](https://www.linkedin.com/in/mouhamadoudiouf)
 - 🌐 Plus d'infos sur mon [profil GitHub](https://github.com/LeM2003)
 
 ---
