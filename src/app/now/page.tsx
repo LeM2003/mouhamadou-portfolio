@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Maintenant — Mouhamadou Diouf",
   description:
     "Ce sur quoi travaille Mouhamadou Diouf en ce moment — Projets en cours, études Master Data Science & IA, lectures et apprentissages à Dakar.",
+  alternates: { canonical: "/now" },
 };
 
 const focuses = [

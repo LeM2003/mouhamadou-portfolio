@@ -1,77 +1,31 @@
 import Link from "next/link";
-import { TimeAwareStatus } from "./TimeAwareStatus";
 import { CommandPaletteTrigger } from "./CommandPaletteTrigger";
 
 export function Nav() {
   return (
-    <nav className="print:hidden px-6 md:px-12 lg:px-20 py-8 flex items-center justify-between gap-6">
-      <Link
-        href="/"
-        className="font-[family-name:var(--font-display)] text-xl tracking-tight shrink-0"
-      >
-        MD
-      </Link>
+    <nav className="print:hidden px-6 md:px-12 lg:px-20 py-5 md:py-8 border-b border-[var(--hairline)]">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <Link
+          href="/"
+          className="text-lg md:text-xl tracking-tight shrink-0"
+          aria-label="Accueil — Mouhamadou Diouf"
+        >
+          <span className="font-sans">Mouhamadou </span>
+          <span className="font-[family-name:var(--font-display)] italic text-[var(--accent)]">Diouf.</span>
+        </Link>
 
-      {/* Status live (humanise — signature Baptiste Briel-style) */}
-      <div className="hidden md:flex flex-1 justify-center">
-        <TimeAwareStatus />
-      </div>
-
-      <div className="flex items-center gap-6 lg:gap-8 text-xs uppercase tracking-[0.15em]">
-        {/* Indice Command Palette — découvrabilité (Client Component dédié) */}
-        <CommandPaletteTrigger />
-        <Link
-          href="/#projects"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-        >
-          Projets
-        </Link>
-        <Link
-          href="/services"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-        >
-          Services
-        </Link>
-        <Link
-          href="/collaboration"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-        >
-          Collaboration
-        </Link>
-        <Link
-          href="/lab/rag"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors hidden lg:inline"
-        >
-          Lab
-        </Link>
-        <Link
-          href="/now"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors hidden lg:inline"
-        >
-          Maintenant
-        </Link>
-        <Link
-          href="/card"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors"
-        >
-          Carte
-        </Link>
-        <a
-          href="https://github.com/LeM2003"
-          target="_blank"
-          rel="noreferrer"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors font-mono hidden lg:inline"
-        >
-          GitHub
-        </a>
-        <a
-          href="https://www.linkedin.com/in/mouhamadoudiouf"
-          target="_blank"
-          rel="noreferrer"
-          className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors font-mono hidden lg:inline"
-        >
-          LinkedIn
-        </a>
+        <div className="flex items-center justify-between md:justify-end gap-5 md:gap-8 text-[11px] md:text-xs uppercase tracking-[0.15em]">
+          <CommandPaletteTrigger />
+          <Link href="/#realisations" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+            Réalisations
+          </Link>
+          <Link href="/services" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+            Services
+          </Link>
+          <Link href="/#contact" className="text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
+            Contact
+          </Link>
+        </div>
       </div>
     </nav>
   );

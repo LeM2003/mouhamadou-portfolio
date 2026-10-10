@@ -25,13 +25,13 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mouhamadou-portfolio.vercel.app"),
-  title: "Mouhamadou Diouf — Tech-first Product Owner & AI Product Builder",
+  title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
   description:
-    "Mouhamadou Diouf construit des produits SaaS et web à Dakar, à l’intersection du produit, de la technologie et de l’intelligence artificielle.",
+    "Mouhamadou Diouf, développeur full stack à Dakar : sites web et applications, tableaux de bord et automatisations IA pour entrepreneurs et PME. AI Product Builder & Product Owner chez Auryntix.",
   openGraph: {
-    title: "Mouhamadou Diouf — Tech-first Product Owner & AI Product Builder",
+    title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
     description:
-      "Produits SaaS, applications web et expériences IA conçus depuis Dakar.",
+      "Sites web, applications, tableaux de bord et automatisations IA conçus depuis Dakar.",
     url: "https://mouhamadou-portfolio.vercel.app",
     siteName: "Mouhamadou Diouf",
     locale: "fr_FR",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mouhamadou Diouf — Tech-first Product Owner & AI Product Builder",
+    title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
     description:
-      "Produits SaaS, applications web et expériences IA conçus depuis Dakar.",
+      "Sites web, applications, tableaux de bord et automatisations IA conçus depuis Dakar.",
   },
 };
 export default function RootLayout({

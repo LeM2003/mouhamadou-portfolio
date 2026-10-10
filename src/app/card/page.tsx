@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Carte — Mouhamadou Diouf",
   description:
     "Carte de visite digitale de Mouhamadou Diouf — AI Product Builder à Dakar. Email, LinkedIn, GitHub, WhatsApp + QR code à scanner pour ajouter le contact.",
+  // Utilitaire de contact partagé par lien/QR — pas destiné à l'indexation.
+  robots: { index: false, follow: true },
 };
 
 // Infos perso centralisées (sources de vérité)
