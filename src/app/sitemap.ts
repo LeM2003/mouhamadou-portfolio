@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
-
-const BASE = "https://mouhamadou-portfolio.vercel.app";
+import { SITE_URL as BASE } from "@/lib/identite";
 
 // Pages retenues selon leur contenu et leur vocation :
 // exclues /card (carte de visite, noindex) et /lab/rag (démo interactive, noindex).

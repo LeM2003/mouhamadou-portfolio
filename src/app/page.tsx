@@ -3,13 +3,15 @@ import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { FeaturedProjects, type FeaturedProject } from "@/components/FeaturedProjects";
 import { projects } from "@/data/projects";
+import { identite, SITE_URL } from "@/lib/identite";
+import { jsonLdString, personJsonLd } from "@/lib/seo-identite";
 
 // Titre et description hérités de src/app/layout.tsx ; seule la canonique est propre à la home.
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const EMAIL = "Mouhamadoud_Diouf@proton.me";
+const EMAIL = identite.email!;
 const ESTIMATION_MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent("Demande d'estimation")}&body=${encodeURIComponent("Bonjour Mouhamadou,\n\nJe souhaite une estimation.\n\nMon besoin : \nDélai souhaité : \nBudget indicatif (facultatif) : \n\nMerci !")}`;
 
 const FEATURED_SLUGS = ["liggeyo", "daba-email-assistant", "personal-os-v2"] as const;
@@ -75,28 +77,18 @@ export default function Home() {
     <main className="flex-1 flex flex-col">
       <Nav />
 
-      {/* Données structurées — décrit uniquement le contenu visible de cette page */}
+      {/* Données structurées — ProfilePage dont l'entité principale est la Person
+          définie une seule fois dans src/lib/identite.ts (même @id partout). */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: jsonLdString({
             "@context": "https://schema.org",
             "@type": "ProfilePage",
-            mainEntity: {
-              "@type": "Person",
-              name: "Mouhamadou Diouf",
-              jobTitle: "Développeur full stack — web, data & IA",
-              description:
-                "Développeur full stack à Dakar : sites web et applications, tableaux de bord et automatisations IA pour entrepreneurs et PME. Product Owner chez Auryntix.",
-              url: "https://mouhamadou-portfolio.vercel.app",
-              email: "mailto:Mouhamadoud_Diouf@proton.me",
-              address: { "@type": "PostalAddress", addressLocality: "Dakar", addressCountry: "SN" },
-              sameAs: [
-                "https://www.linkedin.com/in/mouhamadoudiouf",
-                "https://github.com/LeM2003",
-              ],
-            },
-          }).replace(/</g, "\\u003c"),
+            url: SITE_URL,
+            // @context déjà porté par ProfilePage : on le retire de l'entité imbriquée.
+            mainEntity: (({ "@context": _ctx, ...person }) => person)(personJsonLd(identite)),
+          }),
         }}
       />
 

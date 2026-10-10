@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/identite";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { CustomCursor } from "@/components/CustomCursor";
 import { PageTransition } from "@/components/PageTransition";
@@ -24,7 +25,7 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mouhamadou-portfolio.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
   description:
     "Mouhamadou Diouf, développeur full stack à Dakar : sites web et applications, tableaux de bord et automatisations IA pour entrepreneurs et PME. AI Product Builder & Product Owner chez Auryntix.",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
     title: "Mouhamadou Diouf — Développeur full stack web, data & IA · Dakar",
     description:
       "Sites web, applications, tableaux de bord et automatisations IA conçus depuis Dakar.",
-    url: "https://mouhamadou-portfolio.vercel.app",
+    url: SITE_URL,
     siteName: "Mouhamadou Diouf",
     locale: "fr_FR",
     type: "website",
