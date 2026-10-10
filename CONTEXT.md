@@ -9,6 +9,8 @@
 - Résidus `create-next-app` supprimés de `public/` (file/globe/next/vercel/window.svg, aucune référence dans `src/`).
 - Build de production OK (polices Google bouchonnées temporairement car le bac à sable n'y a pas accès ; `layout.tsx` restauré à l'identique).
 
+- **Favicon (branche `feat/favicon-md`)** : l'ancien `src/app/favicon.ico` était celui de create-next-app (25 931 octets). Remplacé par un monogramme « MD » aux couleurs du site : `src/app/icon.tsx` (192 px, multiple de 48 exigé par Google) et `apple-icon.tsx` (180 px) génèrent les PNG via `next/og` à partir de `src/components/IconMark.tsx`. `favicon.ico` (16/32/48) est un **export statique** de `/icon` — à régénérer si `IconMark` change.
+
 **Actions LeM** : (1) Search Console — ajouter la propriété, soumettre `sitemap.xml`, puis « Inspection de l'URL » sur `/` → « Demander l'indexation » ; (2) fournir une **photo pro** (carrée, ≥ 400 px) → `public/mouhamadou.jpg` + champ `image` dans `identite.ts` et image OpenGraph ; (3) décider du domaine perso.
 
 ## Mise à jour 2026-09-30 — fusion avec `main` (version en ligne)
