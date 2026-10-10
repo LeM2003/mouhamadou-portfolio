@@ -1,5 +1,16 @@
 # CONTEXT.md — Dossier de passation
 
+## Mise à jour 2026-10-10 — identité SEO centralisée (branche `feat/seo-identite`)
+
+- **Vérifié en production avant modification** : `/sitemap.xml` (12 URLs, XML valide) et `/robots.txt` (pointe vers le sitemap) sont en ligne depuis le commit `864fd26`.
+- **Source unique** `src/lib/identite.ts` : `SITE_URL` + identité (Person). Lue par le JSON-LD de l'accueil, `sitemap.ts`, `robots.ts`, `layout.tsx` (metadataBase, OpenGraph) et `/card`. Passer sur un domaine perso = changer `SITE_URL` seulement.
+- JSON-LD enrichi via `src/lib/seo-identite.ts` (copie de la brique `izisaas-toolkit/briques/seo-identite`) : `@id` stable `SITE_URL/#person`, `alternateName: LeM`, `worksFor` Auryntix, `alumniOf` BEM Dakar, `knowsAbout`, CV en ligne ajouté à `sameAs`. Vérifié en servant le build de production en local : JSON valide, un seul `@context`.
+- **CV en ligne — URL corrigée** : `mouhamadou-cv-lem2003s-projects.vercel.app` redirige vers la connexion Vercel (projet `mouhamadou-cv` en `ssoProtection: all_except_custom_domains`). L'URL publique est **`https://mouhamadou-cv.vercel.app`** — à utiliser partout (toolkit `Claude outputs/README.md` contient encore l'ancienne).
+- Résidus `create-next-app` supprimés de `public/` (file/globe/next/vercel/window.svg, aucune référence dans `src/`).
+- Build de production OK (polices Google bouchonnées temporairement car le bac à sable n'y a pas accès ; `layout.tsx` restauré à l'identique).
+
+**Actions LeM** : (1) Search Console — ajouter la propriété, soumettre `sitemap.xml`, puis « Inspection de l'URL » sur `/` → « Demander l'indexation » ; (2) fournir une **photo pro** (carrée, ≥ 400 px) → `public/mouhamadou.jpg` + champ `image` dans `identite.ts` et image OpenGraph ; (3) décider du domaine perso.
+
 ## Mise à jour 2026-09-30 — fusion avec `main` (version en ligne)
 
 - `main` (page unique en ligne) a été fusionnée dans cette branche : métadonnées SEO du layout conservées, lien LinkedIn `/in/mouhamadoudiouf/`, redirections retirées sauf `/projects` → `/#projects` (pas de page index).

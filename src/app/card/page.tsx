@@ -6,6 +6,7 @@ import { QRCodeBlock } from "@/components/QRCodeBlock";
 import { CardStatusBanner } from "@/components/CardStatusBanner";
 import { MdMonogram } from "@/components/MdMonogram";
 import { projects } from "@/data/projects";
+import { SITE_URL } from "@/lib/identite";
 
 export const metadata: Metadata = {
   title: "Carte — Mouhamadou Diouf",
@@ -29,7 +30,7 @@ const CONTACT = {
   phoneInternational: "+221783019983",
   phoneDisplay: "+221 78 301 99 83",
   whatsappUrl: "https://wa.me/221783019983",
-  website: "https://mouhamadou-portfolio.vercel.app",
+  website: SITE_URL,
   note: "AI Product Builder & PO @Auryntix · Master DS/IA · Dakar · Open to freelance & collaborations",
 };
 
