@@ -17,7 +17,8 @@ export type ProjectSlug =
   | "auryntix"
   | "liggeyo"
   | "daba-email-assistant"
-  | "ndimbeul";
+  | "ndimbeul"
+  | "mce-senegal";
 
 export type Project = {
   slug: ProjectSlug;
@@ -411,6 +412,60 @@ export const projects: Project[] = [
       keyDecisions: [],
       metrics: [{ label: "Versement des commissions", value: "Chaque vendredi" }],
       learnings: [],
+    },
+  },
+  {
+    slug: "mce-senegal",
+    num: "09",
+    name: "MCE Sénégal",
+    tag: "Site institutionnel · Back-office",
+    year: "2026",
+    status: "production",
+    context: "Refonte de mcesenegal.com, la Maison de la Création d'Entreprise au Sénégal — réalisée avec Auryntix",
+    decision: "Remplacer un site WordPress par un site Next.js avec back-office de candidatures, sans perdre ni les anciennes URL ni la messagerie",
+    cursorText: "Refonte · CRM des candidatures",
+    stack: ["Next.js 16", "Supabase", "Cloudflare"],
+    repoUrl: null,
+    liveUrl: "https://mcesenegal.com",
+    caseStudy: {
+      problem:
+        "La Maison de la Création d'Entreprise accompagne les porteurs de projet au Sénégal. Son ancien site WordPress présentait mal l'offre et ne permettait pas de traiter les candidatures des entrepreneurs dans un outil structuré.",
+      solution:
+        "Refonte complète du site en Next.js 16 rendu côté serveur, avec un back-office : les candidatures arrivent dans une base Supabase et sont traitées par l'équipe selon des rôles (gestion des candidatures, super-administrateur). Les articles de l'ancien site ont été migrés, les anciennes URL WordPress redirigées de façon permanente, et le domaine migré vers Cloudflare en préservant la messagerie de l'équipe. Les emails transactionnels passent par Resend.",
+      fullStack: [
+        "Next.js 16 (App Router, rendu serveur) · TypeScript",
+        "Supabase (Postgres + Row Level Security, rôles via fonction SECURITY DEFINER)",
+        "Cloudflare Workers via OpenNext · DNS Cloudflare",
+        "Resend (emails transactionnels)",
+      ],
+      keyDecisions: [
+        {
+          title: "Rendu serveur plutôt qu'export statique",
+          rationale:
+            "Un site statique ne peut ni protéger un back-office ni afficher des contenus publiés après le déploiement. Le choix a été fait avant de commencer, pour ne pas devoir changer d'hébergement en cours de route.",
+        },
+        {
+          title: "Accès au back-office par rôles, vérifiés dans la base",
+          rationale:
+            "Les droits sont contrôlés par des politiques RLS qui s'appuient sur une fonction SECURITY DEFINER, et l'inscription publique est désactivée : un visiteur ne peut pas se créer un compte d'équipe.",
+        },
+        {
+          title: "Migration DNS sans couper les emails",
+          rationale:
+            "Avant de basculer le domaine : relevé de la configuration existante, vérification de DNSSEC, enregistrements de messagerie laissés hors du proxy Cloudflare. Le risque d'une migration n'est pas le site, c'est la messagerie du client.",
+        },
+        {
+          title: "Redirections des anciennes URL",
+          rationale:
+            "Les pages de l'ancien WordPress encore indexées par Google redirigent vers leurs nouvelles équivalentes, vérifiées dans le manifeste de build avant la mise en ligne.",
+        },
+      ],
+      metrics: [],
+      learnings: [
+        "Une interface convaincante peut être branchée sur un schéma supposé : il faut toujours la confronter aux tables et contraintes réelles avant de la déclarer prête.",
+        "Un « build validé » écrit dans une note ne remplace pas un build relancé soi-même.",
+        "Ces pièges sont maintenant documentés dans ma boîte à outils et réutilisés sur chaque nouveau projet.",
+      ],
     },
   },
 ];
