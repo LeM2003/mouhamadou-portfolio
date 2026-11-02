@@ -37,7 +37,12 @@ export const identite: Identite = {
     "https://mouhamadou-cv.vercel.app",
   ],
   worksFor: [{ name: "Auryntix", url: "https://auryntix.com" }],
-  alumniOf: [{ name: "BEM Dakar" }],
+  alumniOf: [
+    { name: "BEM Dakar" },
+    // Master Data Science & IA (2025–2027) — relie le site aux posts UMEF
+    // qui mentionnent déjà « Mouhamadou Diouf » comme mentor du bootcamp.
+    { name: "SWISS UMEF University - Campus Dakar" },
+  ],
   knowsAbout: [
     "Next.js",
     "TypeScript",
