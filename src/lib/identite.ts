@@ -23,9 +23,9 @@ export const identite: Identite = {
   name: "Mouhamadou Diouf",
   alternateName: ["LeM"],
   url: SITE_URL,
-  jobTitle: "AI Product Builder — produits web, data & IA",
+  jobTitle: "Développeur Full Stack & IA · Product Owner",
   description:
-    "AI Product Builder à Dakar : je conçois et livre des produits web et IA — sites web et applications, tableaux de bord et automatisations IA pour entrepreneurs et PME. Product Owner chez Auryntix, créateur de Liggeyo.",
+    "Développeur full stack & IA à Dakar : je conçois et livre des produits web et IA — sites web et applications, tableaux de bord et automatisations IA pour entrepreneurs et PME. Product Owner chez Auryntix, créateur de Liggeyo.",
   email: "Mouhamadoud_Diouf@proton.me",
   // Photo carrée 600 px (public/). Google l’utilise pour le panneau de résultats.
   image: `${SITE_URL}/mouhamadou-diouf.jpg`,
