@@ -152,7 +152,7 @@ export const intents: Intent[] = [
       { kind: "route", path: "/card", label: "Carte de visite" },
     ],
     response: () =>
-      "Développeur full stack & IA à Dakar — ce que j'appelle un AI Product Builder. Master Data Science / IA en cours à UMEF. Je conçois des produits où l'IA est une décision d'architecture, pas un add-on marketing.",
+      "AI Product Builder à Dakar. Master Data Science / IA en cours à UMEF. Je conçois des produits où l'IA est une décision d'architecture, pas un add-on marketing.",
   },
   {
     id: "ecommerce-shopify",
