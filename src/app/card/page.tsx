@@ -11,7 +11,7 @@ import { SITE_URL } from "@/lib/identite";
 export const metadata: Metadata = {
   title: "Carte — Mouhamadou Diouf",
   description:
-    "Carte de visite digitale de Mouhamadou Diouf — développeur full stack & IA à Dakar. Email, LinkedIn, GitHub, WhatsApp + QR code à scanner pour ajouter le contact.",
+    "Carte de visite digitale de Mouhamadou Diouf — AI Product Builder à Dakar. Email, LinkedIn, GitHub, WhatsApp + QR code à scanner pour ajouter le contact.",
   // Utilitaire de contact partagé par lien/QR — pas destiné à l'indexation.
   robots: { index: false, follow: true },
 };
@@ -21,7 +21,7 @@ const CONTACT = {
   fullName: "Mouhamadou Diouf",
   firstName: "Mouhamadou",
   lastName: "Diouf",
-  title: "Développeur Full Stack & IA · Product Owner",
+  title: "AI Product Builder · Product Owner",
   org: "Auryntix",
   location: "Dakar, Sénégal",
   email: "Mouhamadoud_Diouf@proton.me",
@@ -31,7 +31,7 @@ const CONTACT = {
   phoneDisplay: "+221 78 301 99 83",
   whatsappUrl: "https://wa.me/221783019983",
   website: SITE_URL,
-  note: "Dev Full Stack & IA · PO @Auryntix · Master DS/IA · Dakar · Open to freelance & collaborations",
+  note: "AI Product Builder · PO @Auryntix · Master DS/IA · Dakar · Open to freelance & collaborations",
 };
 
 // Génération vCard 3.0 — format standard reconnu par iOS / Android / Outlook
