@@ -33,7 +33,8 @@ const preuves = [
     titre: "Expertise",
     accroche: "Produit, données et IA.",
     detail:
-      "Licence en statistiques et informatique décisionnelle (BEM Dakar, mention Très Bien). Master en Data Science et IA en cours (SWISS UMEF). Product Owner chez Auryntix.",
+      "Licence en statistiques et informatique décisionnelle (BEM Dakar, mention Très Bien). Master en Data Science et IA en cours (SWISS UMEF). Product Owner chez Auryntix. Deuxième sur neuf équipes au bootcamp IA et Machine Learning GalsenAI × Umef Tech Community, avec SénéCare AI.",
+    lien: { label: "Lire le post LinkedIn", href: "https://lnkd.in/p/egf2ctnv" },
   },
 ] as const;
 
@@ -201,6 +202,11 @@ export default function Home() {
               <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)]">{p.titre}</p>
               <h3 className="mt-3 font-[family-name:var(--font-display)] text-xl md:text-2xl leading-snug">{p.accroche}</h3>
               <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">{p.detail}</p>
+              {"lien" in p && (
+                <a href={p.lien.href} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)] border-b border-[var(--accent)] pb-0.5">
+                  {p.lien.label} →
+                </a>
+              )}
             </div>
           ))}
         </div>
