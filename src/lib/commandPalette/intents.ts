@@ -195,7 +195,7 @@ export const projectMeta: Record<
   { name: string; tag: string; cursorText: string; href: string }
 > = {
   liggeyo: {
-    name: "Liggeyo",
+    name: "Liggeyo Campus",
     tag: "SaaS de formation",
     cursorText: "Supabase RLS · JWT",
     href: "https://www.liggeyo.com/",

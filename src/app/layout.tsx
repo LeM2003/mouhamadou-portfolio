@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Mouhamadou Diouf — AI Product Builder · Product Owner · Dakar",
   description:
-    "Mouhamadou Diouf, AI Product Builder à Dakar : je conçois et livre des produits web et IA — sites, applications, tableaux de bord, automatisations — pour entrepreneurs et PME. Product Owner chez Auryntix, créateur de Liggeyo.",
+    "Mouhamadou Diouf, AI Product Builder à Dakar : je conçois et livre des produits web et IA — sites, applications, tableaux de bord, automatisations — pour entrepreneurs et PME. Product Owner chez Auryntix, créateur de Liggeyo Campus (Liggeyo Groupe).",
   openGraph: {
     title: "Mouhamadou Diouf — AI Product Builder · Product Owner · Dakar",
     description:

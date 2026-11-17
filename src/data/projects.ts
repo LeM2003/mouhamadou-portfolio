@@ -60,11 +60,11 @@ export const projects: Project[] = [
   {
     slug: "liggeyo",
     num: "01",
-    name: "Liggeyo",
-    tag: "SaaS de formation",
+    name: "Liggeyo Campus",
+    tag: "SaaS de formation · par Liggeyo Groupe",
     year: "2025 – 2026",
     status: "production",
-    context: "Plateforme pour lancer et gérer un espace de formation en ligne — client : Olèle Systems (olelesystems.company)",
+    context: "Plateforme pour lancer et gérer un espace de formation en ligne — école partenaire fondatrice : Olèle Systems (olelesystems.company)",
     decision: "Expérience simple, paiements adaptés et déploiement rapide pour les formateurs",
     cursorText: "Marque blanche · Mobile Money",
     stack: ["Next.js 16", "Supabase", "Vercel"],
@@ -74,7 +74,7 @@ export const projects: Project[] = [
       problem:
         "Les formateurs et créateurs de contenu francophones qui veulent vendre des formations en ligne dépendent de plateformes américaines (Kajabi, Teachable) facturées en dollars, avec leur branding imposé et des moyens de paiement inadaptés au marché africain — pas de Wave, pas d'Orange Money.",
       solution:
-        "Liggeyo se compose de deux briques : un Cockpit (la landing page publique, liggeyo.com) et un LMS marque blanche — l'espace réservé au formateur pour lancer sa propre école en ligne (domaine personnalisé, logo, couleurs) en 24h, uploader son contenu (vidéos, PDF, quiz), délivrer des certificats, suivre ses apprenants et encaisser via Wave et Orange Money, 0% de commission Liggeyo. Olèle Systems (olelesystems.company) utilise le plan Pro de Liggeyo : domaine personnalisé et espace LMS dédié, au même titre que n'importe quel formateur sur ce plan.",
+        "Liggeyo Campus, produit de Liggeyo Groupe, se compose de deux briques : un Cockpit (la landing page publique, liggeyo.com) et un LMS marque blanche — l'espace réservé au formateur pour lancer sa propre école en ligne (domaine personnalisé, logo, couleurs) en 24h, uploader son contenu (vidéos, PDF, quiz), délivrer des certificats, suivre ses apprenants et encaisser via Wave et Orange Money, 0% de commission Liggeyo. Olèle Systems (olelesystems.company), école partenaire fondatrice, y a son espace LMS dédié avec son propre domaine.",
       fullStack: [
         "Next.js 16 (App Router · RSC) · React 19 · TypeScript",
         "Tailwind v4 · shadcn/ui",
