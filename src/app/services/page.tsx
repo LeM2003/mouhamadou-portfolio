@@ -53,7 +53,7 @@ const families = [
         limits: "MVP : fonctionnalités clés uniquement, pas de roadmap complète ni de support utilisateur 24/7. Itérations post-livraison possible en régie.",
         feats: ["Auth + BDD", "Next.js · Supabase", "En production"],
                         delay: "3–5 semaines",
-        project: { name: "Liggeyo — LMS marque blanche en production", href: "/projects/liggeyo" },
+        project: { name: "Liggeyo Campus — LMS marque blanche en production", href: "/projects/liggeyo" },
       },
     ],
   },

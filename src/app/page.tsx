@@ -14,11 +14,35 @@ export const metadata: Metadata = {
 const EMAIL = identite.email!;
 const ESTIMATION_MAILTO = `mailto:${EMAIL}?subject=${encodeURIComponent("Demande d'estimation")}&body=${encodeURIComponent("Bonjour Mouhamadou,\n\nJe souhaite une estimation.\n\nMon besoin : \nDélai souhaité : \nBudget indicatif (facultatif) : \n\nMerci !")}`;
 
-const FEATURED_SLUGS = ["liggeyo", "daba-email-assistant", "personal-os-v2"] as const;
+// Preuves vérifiables (chiffres constatés le 16/11/2026). À remettre à jour à la main, jamais « arrondis en mieux ».
+// Le chiffre d'apprenants est celui d'une école cliente : à publier avec son accord.
+const preuves = [
+  {
+    titre: "Valeur",
+    accroche: "Un produit en production, utilisé par de vraies écoles.",
+    detail:
+      "Liggeyo Campus, par Liggeyo Groupe, permet à une école de vendre ses formations en ligne. L'une d'elles compte aujourd'hui plus de 170 apprenants, qui paient par Wave et Orange Money.",
+  },
+  {
+    titre: "Rigueur",
+    accroche: "Un produit qui tient dans la durée.",
+    detail:
+      "Près de 1 500 tests automatisés. Chaque école est isolée des autres. Les contrats, avis et acceptations sont horodatés et tracés. Les limites sont documentées, pas cachées.",
+  },
+  {
+    titre: "Expertise",
+    accroche: "Produit, données et IA.",
+    detail:
+      "Licence en statistiques et informatique décisionnelle (BEM Dakar, mention Très Bien). Master en Data Science et IA en cours (SWISS UMEF). Product Owner chez Auryntix. Deuxième sur neuf équipes au bootcamp IA et Machine Learning GalsenAI × Umef Tech Community, avec SénéCare AI.",
+    lien: { label: "Lire le post LinkedIn", href: "https://lnkd.in/p/egf2ctnv" },
+  },
+] as const;
+
+const FEATURED_SLUGS =["liggeyo", "daba-email-assistant", "personal-os-v2"] as const;
 
 const FEATURED_META: Record<string, { angle: string; role: string }> = {
   liggeyo: {
-    angle: "Plateforme SaaS de formation : conception et réalisation du produit.",
+    angle: "Liggeyo Campus, par Liggeyo Groupe : plateforme SaaS de formation, conçue et réalisée de bout en bout.",
     role: "Conception produit et développement, du modèle multi-tenant aux paiements Wave / Orange Money.",
   },
   "daba-email-assistant": {
@@ -161,12 +185,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 03 — Expertises ────────────────────────────────── */}
+      {/* ── 03 — Preuves : valeur, rigueur, expertise ──────── */}
+      {/* Règle : uniquement des faits vérifiables. Aucun chiffre inventé, aucun témoignage fabriqué. */}
+      <section id="preuves" className="px-6 md:px-12 lg:px-20 py-20 md:py-28 max-w-6xl mx-auto w-full">
+        <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-4 flex items-center gap-3">
+          <span>03</span>
+          <span className="w-8 h-px bg-[var(--hairline)]" />
+          <span>Preuves</span>
+        </div>
+        <h2 className="font-[family-name:var(--font-display)] text-3xl md:text-5xl leading-tight mb-12 md:mb-16">
+          Valeur, rigueur, <span className="italic text-[var(--accent)]">expertise.</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+          {preuves.map((p) => (
+            <div key={p.titre} className="border-t border-[var(--hairline)] pt-6">
+              <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)]">{p.titre}</p>
+              <h3 className="mt-3 font-[family-name:var(--font-display)] text-xl md:text-2xl leading-snug">{p.accroche}</h3>
+              <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">{p.detail}</p>
+              {"lien" in p && (
+                <a href={p.lien.href} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-[var(--accent)] border-b border-[var(--accent)] pb-0.5">
+                  {p.lien.label} →
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 04 — Expertises ────────────────────────────────── */}
       <section className="px-6 md:px-12 lg:px-20 py-20 md:py-28 max-w-6xl mx-auto w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
           <div>
             <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-4 flex items-center gap-3">
-              <span>03</span>
+              <span>04</span>
               <span className="w-8 h-px bg-[var(--hairline)]" />
               <span>Expertises</span>
             </div>
@@ -195,7 +246,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 04 — Méthode ───────────────────────────────────── */}
+      {/* ── Méthode ────────────────────────────────────────── */}
       <section className="px-6 md:px-12 lg:px-20 py-12 max-w-6xl mx-auto w-full border-t border-b border-[var(--hairline)]">
         <ol className="flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-[11px] md:text-xs uppercase tracking-[0.15em] text-[var(--muted)]">
           {steps.map((s, i) => (
@@ -210,7 +261,7 @@ export default function Home() {
       {/* ── 05 — Contact ───────────────────────────────────── */}
       <section id="contact" className="px-6 md:px-12 lg:px-20 py-20 md:py-28 max-w-6xl mx-auto w-full">
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--muted)] mb-4 flex items-center gap-3">
-          <span>04</span>
+          <span>05</span>
           <span className="w-8 h-px bg-[var(--hairline)]" />
           <span>Contact</span>
         </div>
